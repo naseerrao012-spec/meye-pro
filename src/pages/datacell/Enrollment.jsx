@@ -13,7 +13,6 @@ function Enrollment() {
         <label>
           <input
             type="radio"
-            name="type"
             checked={type === "single"}
             onChange={() => setType("single")}
           />
