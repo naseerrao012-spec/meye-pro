@@ -1,0 +1,80 @@
+.add-student-container {
+  max-width: 380px;
+  margin: 40px auto;
+  background: #1fb6d5;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Title */
+.title {
+  background: #2b6fa3;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+/* Upload heading */
+.upload-title {
+  text-align: center;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* Image grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Image upload box */
+.image-box {
+  background: #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px 10px;
+  cursor: pointer;
+}
+
+.image-box span {
+  font-size: 30px;
+  display: block;
+}
+
+.image-box p {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* Form */
+.student-form {
+  margin-top: 10px;
+}
+
+.student-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Button */
+.submit-btn {
+  width: 100%;
+  background: #2b6fa3;
+  color: white;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
