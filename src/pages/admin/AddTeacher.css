@@ -1,87 +1,119 @@
-.add-teacher-container {
-  max-width: 380px;
-  margin: 40px auto;
-  background: #1fb6d5;
+/* Zero-Margin Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden; /* Horizontal scroll block */
+}
+
+.web-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar Corner Fix */
+.web-sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: white;
+  flex-shrink: 0;
+}
+
+.web-logo {
+  padding: 30px;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  background: #0f172a;
+}
+
+.web-nav {
   padding: 20px;
-  border-radius: 10px;
-  font-family: Arial, sans-serif;
-  box-sizing: border-box;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border-left: 4px solid #38bdf8;
+  font-weight: bold;
 }
 
-/* Title */
-.title {
-  background: #2b6fa3;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-}
-
-/* Upload box */
-.image-box {
-  background: #e0e0e0;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  padding: 15px;
-  margin-bottom: 20px;
+/* Main Area - Adjusts to screen end */
+.web-content {
+  flex-grow: 1;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers everything horizontally */
-  justify-content: center; /* centers vertically */
 }
 
-/* Camera icon container */
-.icon-container {
-  width: 60px;
-  height: 60px;
-  background: #c0c0c0;
-  border-radius: 50%;
+.web-header { margin-bottom: 20px; }
+.web-header h1 { font-size: 24px; color: #334155; }
+
+.web-form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.web-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.web-panel {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.web-panel h3 { margin-bottom: 20px; font-size: 16px; color: #64748b; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+
+/* Inputs Area */
+.web-inputs { display: flex; flex-direction: column; gap: 12px; }
+.field-group label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 5px; }
+.field-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+/* Photo Grid */
+.web-photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.web-photo-box {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  height: 120px;
+  display: flex;
   justify-content: center;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-/* Upload text */
-.image-box p {
-  font-weight: bold;
-  font-size: 14px;
-  margin: 0;
-}
-
-/* Form fields */
-.teacher-form .field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 12px;
-}
-
-.teacher-form label {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.teacher-form input {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Submit button */
-.submit-btn {
-  width: 100%;
-  background: #2b6fa3;
-  color: white;
-  padding: 12px;
-  border-radius: 25px;
-  border: none;
-  font-weight: bold;
+  align-items: center;
   cursor: pointer;
-  margin-top: 10px;
+  transition: 0.3s;
 }
+
+.web-photo-box:hover { border-color: #38bdf8; background: #f0f9ff; }
+.web-icon { font-size: 28px; }
+.web-icon.done { color: #10b981; }
+
+/* Action Button */
+.web-btn {
+  margin-top: 10px;
+  padding: 18px;
+  background: #0f172a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+
+.web-btn:hover { background: #334155; }

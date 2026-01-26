@@ -1,78 +1,108 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./AddTeacher.css";
 
 function AddTeacher() {
   const [teacherData, setTeacherData] = useState({
-    name: "",
-    cnic: "",
-    email: "",
-    password: "",
-    qualification: "",
-    picture: null,
+    name: "", cnic: "", email: "", password: "123", qualification: "",
+    frontPic1: null, frontPic2: null, leftPic: null, rightPic: null,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
-    setTeacherData({
-      ...teacherData,
-      [e.target.name]: e.target.value,
-    });
+    setTeacherData({ ...teacherData, [e.target.name]: e.target.value });
   };
 
   const handleImageChange = (e) => {
-    setTeacherData({
-      ...teacherData,
-      picture: e.target.files[0],
-    });
+    setTeacherData({ ...teacherData, [e.target.name]: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Teacher Data:", teacherData);
-    alert("Teacher Added Successfully");
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("name", teacherData.name);
+    formData.append("CNIC", teacherData.cnic);
+    formData.append("Email", teacherData.email);
+    formData.append("Password", teacherData.password);
+    formData.append("Qualification", teacherData.qualification);
+
+    const images = [teacherData.frontPic1, teacherData.frontPic2, teacherData.leftPic, teacherData.rightPic];
+    if (images.includes(null)) {
+      alert("Please upload all 4 pictures!");
+      setLoading(false);
+      return;
+    }
+    images.forEach((pic) => formData.append("teacher_pics", pic));
+
+    try {
+      await axios.post("http://127.0.0.1:8000/datacell/AddTeacher", formData);
+      alert("Teacher Registered!");
+    } catch (error) {
+      alert("Failed!");
+    } finally { setLoading(false); }
   };
 
   return (
-    <div className="add-teacher-container">
-      <h2 className="title">ADD TEACHER</h2>
+    <div className="web-wrapper">
+      <aside className="web-sidebar">
+        <div className="web-logo">METRIC-EYE</div>
+        <div className="web-nav">ADD TEACHER</div>
+      </aside>
 
-      <label className="image-box">
-        <input type="file" onChange={handleImageChange} hidden />
-        <div className="icon-container">
-          <span>📷</span>
-        </div>
-        <p>UPLOAD PICTURES</p>
-      </label>
+      <main className="web-content">
+        <header className="web-header">
+          <h1>Teacher Registration</h1>
+        </header>
 
-      <form onSubmit={handleSubmit} className="teacher-form">
-        <div className="field">
-          <label>Name:</label>
-          <input type="text" name="name" value={teacherData.name} onChange={handleChange} />
-        </div>
+        <form onSubmit={handleSubmit} className="web-form">
+          <div className="web-grid">
+            {/* Details Section */}
+            <div className="web-panel">
+              <h3>Personal Details</h3>
+              <div className="web-inputs">
+                <div className="field-group">
+                  <label>Name</label>
+                  <input name="name" onChange={handleChange} required />
+                </div>
+                <div className="field-group">
+                  <label>CNIC</label>
+                  <input name="cnic" onChange={handleChange} required />
+                </div>
+                <div className="field-group">
+                  <label>Email</label>
+                  <input name="email" type="email" onChange={handleChange} required />
+                </div>
+                <div className="field-group">
+                  <label>Qualification</label>
+                  <input name="qualification" onChange={handleChange} required />
+                </div>
+              </div>
+            </div>
 
-        <div className="field">
-          <label>CNIC:</label>
-          <input type="text" name="cnic" value={teacherData.cnic} onChange={handleChange} />
-        </div>
+            {/* Photo Section */}
+            <div className="web-panel">
+              <h3>Face Capture</h3>
+              <div className="web-photo-grid">
+                {["frontPic1", "frontPic2", "leftPic", "rightPic"].map((id) => (
+                  <label key={id} className="web-photo-box">
+                    <input type="file" name={id} onChange={handleImageChange} hidden />
+                    <div className={`web-icon ${teacherData[id] ? "done" : ""}`}>
+                      {teacherData[id] ? "✅" : "📷"}
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
 
-        <div className="field">
-          <label>Email:</label>
-          <input type="email" name="email" value={teacherData.email} onChange={handleChange} />
-        </div>
-
-        <div className="field">
-          <label>Password:</label>
-          <input type="password" name="password" value={teacherData.password} onChange={handleChange} />
-        </div>
-
-        <div className="field">
-          <label>Qualification:</label>
-          <input type="text" name="qualification" value={teacherData.qualification} onChange={handleChange} />
-        </div>
-
-        <button type="submit" className="submit-btn">
-          SUBMIT
-        </button>
-      </form>
+          <button type="submit" className="web-btn" disabled={loading}>
+            {loading ? "SAVING..." : "SUBMIT"}
+          </button>
+        </form>
+      </main>
     </div>
   );
 }
