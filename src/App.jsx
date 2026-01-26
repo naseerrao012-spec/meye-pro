@@ -11,10 +11,10 @@ function App() {
    
     <div>
       <AddStudent />
-      <hr />
+      {/* <hr />
       <AddTeacher />
       <hr />
-      <Enrollment />
+      <Enrollment /> */}
     </div>
   
       
