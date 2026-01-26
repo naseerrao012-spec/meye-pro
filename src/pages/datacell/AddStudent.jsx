@@ -121,7 +121,7 @@
 
 
 import React, { useState } from "react";
-import axios from "axios"; // Axios import kiya
+import axios from "axios";
 import "./AddStudent.css";
 
 function AddStudent() {
@@ -130,8 +130,8 @@ function AddStudent() {
     regNo: "",
     discipline: "",
     session: "",
-    year: "", // Backend me year as separate field nahi hai, par use rakha gaya hai
-    password: "123", // Default password ya aap input field add kar sakte hain
+    year: "",
+    password: "123",
     frontPic1: null,
     frontPic2: null,
     leftPic: null,
@@ -141,17 +141,11 @@ function AddStudent() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setStudentData({
-      ...studentData,
-      [e.target.name]: e.target.value,
-    });
+    setStudentData({ ...studentData, [e.target.name]: e.target.value });
   };
 
   const handleImageChange = (e) => {
-    setStudentData({
-      ...studentData,
-      [e.target.name]: e.target.files[0],
-    });
+    setStudentData({ ...studentData, [e.target.name]: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
@@ -159,125 +153,105 @@ function AddStudent() {
     setLoading(true);
 
     const formData = new FormData();
-    
-    // 1. Backend parameters ke exact spelling aur casing:
     formData.append("Regno", studentData.regNo);
     formData.append("name", studentData.name);
-    formData.append("Password", "123"); // 'P' capital as per backend
+    formData.append("Password", "123");
     formData.append("discipline", studentData.discipline);
     formData.append("session", studentData.session);
 
-    // 2. Images ko collect karein
-    const images = [
-      studentData.frontPic1,
-      studentData.frontPic2,
-      studentData.leftPic,
-      studentData.rightPic,
-    ];
-
-    // Check karein ke koi image missing to nahi
-    if (images.some(img => img === null)) {
-      alert("Error: Please upload all 4 pictures.");
+    const images = [studentData.frontPic1, studentData.frontPic2, studentData.leftPic, studentData.rightPic];
+    if (images.includes(null)) {
+      alert("Error: All 4 photos are required.");
       setLoading(false);
       return;
     }
 
-    // 3. Backend expects 'student_pics' as a list
-    images.forEach((pic) => {
-      formData.append("student_pics", pic);
-    });
+    images.forEach((pic) => formData.append("student_pics", pic));
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/datacell/AddStudent", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
+      await axios.post("http://127.0.0.1:8000/datacell/AddStudent", formData);
       alert("Student Registered Successfully!");
-      console.log(response.data);
     } catch (error) {
-      // Backend se aane wala specific error message pakadne ke liye:
-      const errorDetail = error.response?.data?.detail || "Registration failed";
-      alert("Error: " + errorDetail);
-      console.error("Backend Error:", error.response?.data);
+      alert("Error: " + (error.response?.data?.detail || "Server Error"));
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="add-student-container">
-      <h2 className="title">ADD STUDENT</h2>
+    <div className="viewport-lock">
+      {/* Fixed Sidebar */}
+      <aside className="fixed-sidebar">
+        <div className="brand-header">METRIC-EYE</div>
+        <div className="active-nav">ADD STUDENT</div>
+      </aside>
 
-      {/* <p className="upload-title">UPLOAD PICTURES</p> */}
+      {/* Main Content Area */}
+      <main className="main-stage">
+        <div className="header-flat">
+          <h1>Student Registration</h1>
+        </div>
 
-      {/* <div className="image-grid">
-        <label className="image-box">
-          <input type="file" name="frontPic1" onChange={handleImageChange} hidden />
-          <span>{studentData.frontPic1 ? "✅" : "📷"}</span>
-          <p>Front pic 1</p>
-        </label>
+        <form onSubmit={handleSubmit} className="one-page-form">
+          <div className="dual-section">
+            
+            {/* Left: Academic Inputs */}
+            <div className="glass-panel">
+              <h3 className="sub-title">Student Details</h3>
+              <div className="input-grid-web">
+                <div className="web-field">
+                  <label>Full Name</label>
+                  <input name="name" placeholder="Full Name" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Reg No</label>
+                  <input name="regNo" placeholder="Reg No" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Discipline</label>
+                  <input name="discipline" placeholder="Discipline" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Session</label>
+                  <input name="session" placeholder="Session" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Year</label>
+                  <input name="year" placeholder="Year" onChange={handleChange} />
+                </div>
+              </div>
+            </div>
 
-        <label className="image-box">
-          <input type="file" name="frontPic2" onChange={handleImageChange} hidden />
-          <span>{studentData.frontPic2 ? "✅" : "📷"}</span>
-          <p>Front pic 2</p>
-        </label>
+            {/* Right: Photo Uploads */}
+            <div className="glass-panel">
+              <h3 className="sub-title">Face Biometrics</h3>
+              <div className="biometric-row">
+                {[
+                  { id: "frontPic1", label: "Front 1" },
+                  { id: "frontPic2", label: "Front 2" },
+                  { id: "leftPic", label: "Left View" },
+                  { id: "rightPic", label: "Right View" },
+                ].map((pic) => (
+                  <label key={pic.id} className="web-capture-box">
+                    <input type="file" name={pic.id} onChange={handleImageChange} hidden />
+                    <div className={`icon-state ${studentData[pic.id] ? "is-done" : ""}`}>
+                      {studentData[pic.id] ? "✅" : "📷"}
+                    </div>
+                    <span>{pic.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
 
-        <label className="image-box">
-          <input type="file" name="leftPic" onChange={handleImageChange} hidden />
-          <span>{studentData.leftPic ? "✅" : "📷"}</span>
-          <p>Left side pic</p>
-        </label>
+          </div>
 
-        <label className="image-box">
-          <input type="file" name="rightPic" onChange={handleImageChange} hidden />
-          <span>{studentData.rightPic ? "✅" : "📷"}</span>
-          <p>Right side pic</p>
-        </label>
-      </div> */}
-
-      <form onSubmit={handleSubmit} className="student-form">
-
-  <p className="upload-title">UPLOAD PICTURES</p>
-  <div className="image-grid">
-    <label className="image-box">
-      <input type="file" name="frontPic1" onChange={handleImageChange} hidden />
-      <span>{studentData.frontPic1 ? "✅" : "📷"}</span>
-      <p>Front pic 1</p>
-    </label>
-
-    <label className="image-box">
-      <input type="file" name="frontPic2" onChange={handleImageChange} hidden />
-      <span>{studentData.frontPic2 ? "✅" : "📷"}</span>
-      <p>Front pic 2</p>
-    </label>
-
-    <label className="image-box">
-      <input type="file" name="leftPic" onChange={handleImageChange} hidden />
-      <span>{studentData.leftPic ? "✅" : "📷"}</span>
-      <p>Left side pic</p>
-    </label>
-
-    <label className="image-box">
-      <input type="file" name="rightPic" onChange={handleImageChange} hidden />
-      <span>{studentData.rightPic ? "✅" : "📷"}</span>
-      <p>Right side pic</p>
-    </label>
-  </div>
-
-  <input name="name" placeholder="Name" onChange={handleChange} required />
-  <input name="regNo" placeholder="Reg no" onChange={handleChange} required />
-  <input name="discipline" placeholder="Discipline" onChange={handleChange} required />
-  <input name="session" placeholder="Session" onChange={handleChange} required />
-
-  <button type="submit" disabled={loading}>
-    {loading ? "SAVING..." : "SUBMIT"}
-  </button>
-
-</form>
-
+          <div className="footer-action">
+            <button type="submit" className="web-action-btn" disabled={loading}>
+              {loading ? "SAVING..." : "REGISTER STUDENT"}
+            </button>
+          </div>
+        </form>
+      </main>
     </div>
   );
 }

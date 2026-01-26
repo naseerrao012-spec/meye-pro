@@ -1,80 +1,151 @@
-.add-student-container {
-  max-width: 380px;
-  margin: 40px auto;
-  background: #1fb6d5;
-  padding: 20px;
-  border-radius: 10px;
-  font-family: Arial, sans-serif;
-  box-sizing: border-box;
+/* Zero Scroll Configuration */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Browser scroll khatm */
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Title */
-.title {
-  background: #2b6fa3;
+.viewport-lock {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f4f6f9;
+}
+
+/* Sidebar Corner Fixed */
+.fixed-sidebar {
+  width: 240px;
+  background-color: #1a202c;
   color: white;
+  flex-shrink: 0;
+}
+
+.brand-header {
+  padding: 30px;
+  font-size: 20px;
+  font-weight: bold;
   text-align: center;
-  padding: 10px;
-  border-radius: 6px;
+  background: #111827;
+  color: #3b82f6;
+}
+
+.active-nav {
+  padding: 20px 30px;
+  background: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid #3b82f6;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+/* Main Area Adjustment */
+.main-stage {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  height: 100vh;
+}
+
+.header-flat {
   margin-bottom: 15px;
 }
 
-/* Upload heading */
-.upload-title {
-  text-align: center;
-  font-weight: bold;
-  margin: 15px 0;
+.header-flat h1 {
+  font-size: 24px;
+  color: #1f2937;
 }
 
-/* Image grid */
-.image-grid {
+.one-page-form {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 60px); /* Pura form screen mein fit karne ke liye */
+}
+
+.dual-section {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  flex-grow: 1; /* Space barabari se baantein */
   margin-bottom: 20px;
 }
 
-/* Image upload box */
-.image-box {
-  background: #e0e0e0;
-  border-radius: 8px;
-  text-align: center;
-  padding: 20px 10px;
-  cursor: pointer;
+.glass-panel {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
 }
 
-.image-box span {
-  font-size: 30px;
-  display: block;
+.sub-title {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #4b5563;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
 }
 
-.image-box p {
-  margin-top: 8px;
-  font-size: 13px;
+/* Input Fields Fitting */
+.input-grid-web {
+  display: grid;
+  gap: 12px;
 }
 
-/* Form */
-.student-form {
-  margin-top: 10px;
+.web-field {
+  display: flex;
+  flex-direction: column;
 }
 
-.student-form input {
-  width: 100%;
+.web-field label { font-size: 12px; font-weight: bold; color: #6b7280; margin-bottom: 4px; }
+.web-field input {
   padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
 }
 
-/* Button */
-.submit-btn {
+/* Photo Tiles Fitting */
+.biometric-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.web-capture-box {
+  border: 2px dashed #d1d5db;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.web-capture-box:hover { border-color: #3b82f6; background: #eff6ff; }
+.icon-state { font-size: 28px; margin-bottom: 5px; }
+.icon-state.is-done { color: #10b981; }
+
+/* Submit area fitting */
+.footer-action {
+  padding-bottom: 20px;
+}
+
+.web-action-btn {
   width: 100%;
-  background: #2b6fa3;
+  padding: 16px;
+  background: #1f2937;
   color: white;
-  padding: 12px;
-  border-radius: 25px;
   border: none;
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
+
+.web-action-btn:hover { background: #374151; }
