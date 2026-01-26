@@ -255,5 +255,4 @@ function AddStudent() {
     </div>
   );
 }
-
 export default AddStudent;
