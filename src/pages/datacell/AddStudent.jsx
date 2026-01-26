@@ -242,7 +242,6 @@ function AddStudent() {
                 ))}
               </div>
             </div>
-
           </div>
 
           <div className="footer-action">
@@ -255,4 +254,5 @@ function AddStudent() {
     </div>
   );
 }
+
 export default AddStudent;
