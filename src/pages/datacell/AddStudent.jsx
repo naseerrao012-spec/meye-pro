@@ -171,18 +171,16 @@ function AddStudent() {
     try {
       await axios.post("http://127.0.0.1:8000/datacell/AddStudent", formData);
       alert("Student Registered Successfully!");
-    } catch (error) {
-      alert("Error: " + (error.response?.data?.detail || "Server Error"));
-    } finally {
+    } 
+     finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="viewport-lock">
       {/* Fixed Sidebar */}
       <aside className="fixed-sidebar">
-        <div className="brand-header">METRIC-EYE</div>
+        <div className="brand-header">M-EYE PRO</div>
         <div className="active-nav">ADD STUDENT</div>
       </aside>
 

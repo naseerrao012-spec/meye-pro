@@ -8,7 +8,7 @@ function Enrollment() {
     <div className="app-viewport">
       {/* Sidebar - Fixed Corner */}
       <aside className="app-sidebar">
-        <div className="brand-logo">METRIC-EYE</div>
+        <div className="brand-logo">M-EYE PRO</div>
         <nav className="nav-list">
           <div className="nav-item active">ENROLLMENT</div>
         </nav>

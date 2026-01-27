@@ -10,11 +10,11 @@ function App() {
   return (
    
     <div>
-      {/* <AddStudent />
-      <hr /> */}
-      {/* <AddTeacher /> */}
-       <hr />
-      <Enrollment />  
+       <AddStudent />
+      <hr /> 
+      {/* <AddTeacher />  */}
+        {/* <hr />
+      <Enrollment />    */}
     </div>
   
       

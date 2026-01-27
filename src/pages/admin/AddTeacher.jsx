@@ -48,7 +48,7 @@ function AddTeacher() {
   return (
     <div className="web-wrapper">
       <aside className="web-sidebar">
-        <div className="web-logo">METRIC-EYE</div>
+        <div className="web-logo">M-EYE PRO</div>
         <div className="web-nav">ADD TEACHER</div>
       </aside>
 
