@@ -179,10 +179,10 @@ function AddStudent() {
   return (
     <div className="viewport-lock">
       {/* Fixed Sidebar */}
-      <aside className="fixed-sidebar">
+      {/* <aside className="fixed-sidebar">
         <div className="brand-header">M-EYE PRO</div>
         <div className="active-nav">ADD STUDENT</div>
-      </aside>
+      </aside> */}
 
       {/* Main Content Area */}
       <main className="main-stage">

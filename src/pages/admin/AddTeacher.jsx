@@ -4,8 +4,13 @@ import "./AddTeacher.css";
 
 function AddTeacher() {
   const [teacherData, setTeacherData] = useState({
-    name: "", cnic: "", email: "", password: "123", qualification: "",
-    frontPic1: null, frontPic2: null, leftPic: null, rightPic: null,
+    name: "",
+    teacher_id : "", // This will be sent as teacher_id
+    password: "123", 
+    frontPic1: null,
+    frontPic2: null,
+    leftPic: null,
+    rightPic: null,
   });
 
   const [loading, setLoading] = useState(false);
@@ -23,34 +28,54 @@ function AddTeacher() {
     setLoading(true);
 
     const formData = new FormData();
+    
+    // --- Integration Mapping ---
+    // Backend expects: teacher_id, name, Password
+    formData.append("teacher_id", teacherData.teacher_id); 
     formData.append("name", teacherData.name);
-    formData.append("CNIC", teacherData.cnic);
-    formData.append("Email", teacherData.email);
     formData.append("Password", teacherData.password);
-    formData.append("Qualification", teacherData.qualification);
 
-    const images = [teacherData.frontPic1, teacherData.frontPic2, teacherData.leftPic, teacherData.rightPic];
+    // Backend expects a list named: teachers_pics
+    const images = [
+        teacherData.frontPic1, 
+        teacherData.frontPic2, 
+        teacherData.leftPic, 
+        teacherData.rightPic
+    ];
+
     if (images.includes(null)) {
       alert("Please upload all 4 pictures!");
       setLoading(false);
       return;
     }
-    images.forEach((pic) => formData.append("teacher_pics", pic));
+
+    // Har image ko same key "teachers_pics" ke sath append karna hai
+    images.forEach((pic) => {
+      formData.append("teachers_pics", pic);
+    });
 
     try {
-      await axios.post("http://127.0.0.1:8000/datacell/AddTeacher", formData);
-      alert("Teacher Registered!");
-    } catch (error) {
-      alert("Failed!");
-    } finally { setLoading(false); }
+      // URL updated to match your @router.post("/AddTeacher") with prefix "/teacher"
+      const response = await axios.post("http://127.0.0.1:8000/admin/AddTeacher", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      
+      alert("Teacher Registered Successfully!");
+      console.log(response.data);
+    } 
+    finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="web-wrapper">
-      <aside className="web-sidebar">
+      {/* <aside className="web-sidebar">
         <div className="web-logo">M-EYE PRO</div>
         <div className="web-nav">ADD TEACHER</div>
-      </aside>
+      </aside> */}
 
       <main className="web-content">
         <header className="web-header">
@@ -59,7 +84,7 @@ function AddTeacher() {
 
         <form onSubmit={handleSubmit} className="web-form">
           <div className="web-grid">
-            {/* Details Section */}
+
             <div className="web-panel">
               <h3>Personal Details</h3>
               <div className="web-inputs">
@@ -68,21 +93,23 @@ function AddTeacher() {
                   <input name="name" onChange={handleChange} required />
                 </div>
                 <div className="field-group">
-                  <label>CNIC</label>
+                  <label>Teacher ID </label>
                   <input name="cnic" onChange={handleChange} required />
                 </div>
                 <div className="field-group">
-                  <label>Email</label>
-                  <input name="email" type="email" onChange={handleChange} required />
-                </div>
-                <div className="field-group">
-                  <label>Qualification</label>
-                  <input name="qualification" onChange={handleChange} required />
+                  <label>Account Password</label>
+                  <input 
+                    name="password" 
+                    type="password" 
+                    value={teacherData.password} 
+                    onChange={handleChange} 
+                    required 
+                  />
                 </div>
               </div>
             </div>
 
-            {/* Photo Section */}
+
             <div className="web-panel">
               <h3>Face Capture</h3>
               <div className="web-photo-grid">
