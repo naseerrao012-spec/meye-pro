@@ -5,7 +5,7 @@ import "./AddTeacher.css";
 function AddTeacher() {
   const [teacherData, setTeacherData] = useState({
     name: "",
-    teacher_id : "", // This will be sent as teacher_id
+    cnic : "", // This will be sent as teacher_id
     password: "123", 
     frontPic1: null,
     frontPic2: null,
@@ -31,7 +31,7 @@ function AddTeacher() {
     
     // --- Integration Mapping ---
     // Backend expects: teacher_id, name, Password
-    formData.append("teacher_id", teacherData.teacher_id); 
+    formData.append("teacher_id", teacherData.cnic); 
     formData.append("name", teacherData.name);
     formData.append("Password", teacherData.password);
 

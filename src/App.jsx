@@ -1,14 +1,30 @@
+import { useState } from 'react'
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import AddStudent from './pages/datacell/AddStudent';
 import AddTeacher from './pages/admin/AddTeacher';
+import './App.css'
 import Enrollment from './pages/datacell/Enrollment';
+ 
+
+  const [count, setCount] = useState(0)
 import './App.css'; // Global sidebar styling yahan rakhenge
 
 function Sidebar() {
   const location = useLocation(); // Current page check karne ke liye
 
+
   return (
+   
+    // <div>
+    //    <AddStudent />
+    //   <hr /> 
+    //   {/* <AddTeacher />  */}
+    //     {/* <hr />
+    //   <Enrollment />    */}
+    // </div>
+  
+      
     <aside className="sidebar-fixed">
       <div className="sidebar-logo">M-EYE PRO</div>
       <nav className="sidebar-nav">
@@ -44,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
