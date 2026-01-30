@@ -219,6 +219,7 @@ function AddStudent() {
                 </div>
               </div>
             </div>
+  
 
             {/* Right: Photo Uploads */}
             <div className="glass-panel">
