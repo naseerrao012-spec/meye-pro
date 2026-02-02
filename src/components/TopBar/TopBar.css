@@ -1,0 +1,92 @@
+.topbar { display: none; position: relative; }
+
+/* Title left, toggle right on large screens */
+@media (min-width: 1025px) {
+  .topbar {
+    display: flex;
+    height: 56px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px; /* flush corners */
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+  }
+
+  .topbar-toggle {
+    order: 2;
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-primary);
+    z-index: 1000;
+    margin-right: 0;
+  }
+
+  .topbar-title {
+    order: 1;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-left: 0;
+  }
+}
+
+/* Title left, toggle right on medium/small screens */
+@media (max-width: 1024px) {
+  .topbar {
+    display: flex;
+    height: 56px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px; /* flush corners */
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+  }
+
+  .topbar-toggle {
+    order: 2;
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-primary);
+    z-index: 1000;
+    margin-right: 0;
+  }
+
+  .topbar-title {
+    order: 1;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-left: 0;
+  }
+
+  /* Optional helper to absolutely pin the toggle into the corner */
+  .topbar-toggle.corner-right {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+}

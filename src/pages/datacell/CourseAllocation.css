@@ -1,4 +1,4 @@
-/* Enrollment Page - Modern UI */
+/* Course Allocation - Modern UI */
 :root {
   --primary: #0066ff;
   --primary-hover: #0052cc;
@@ -29,6 +29,7 @@ html, body {
   height: 100vh;
 }
 
+
 .app-sidebar {
   width: 280px;
   background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
@@ -37,42 +38,7 @@ html, body {
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.brand-logo {
-  padding: 28px 20px;
-  font-size: 18px;
-  font-weight: 800;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, #60a5fa, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-item {
-  padding: 12px 20px;
-  color: rgba(255, 255, 255, 0.7);
-  display: block;
-  transition: all 0.3s ease;
-  border-left: 4px solid transparent;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.nav-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-}
-
-.nav-item.active {
-  padding: 12px 20px;
-  background: rgba(96, 165, 250, 0.2);
-  color: #60a5fa;
-  border-left-color: #60a5fa;
-  font-weight: 600;
-}
-
+/* 3. Main Content Area (Fixing Left & Right Space) */
 .app-content {
   flex-grow: 1;
   display: flex;
@@ -98,6 +64,7 @@ html, body {
   margin-bottom: 28px;
 }
 
+/* 4. Allocation Card (Premium & Fixed) */
 .enroll-card-main {
   background: white;
   border-radius: 12px;
@@ -114,6 +81,7 @@ html, body {
   border-color: var(--primary-light);
 }
 
+/* 5. Mode Selector Row */
 .type-selector-row {
   display: flex;
   align-items: center;
@@ -123,27 +91,22 @@ html, body {
   border-bottom: 2px solid var(--border);
 }
 
-.label-text { font-weight: 600; color: var(--text-dark); font-size: 15px; }
-.radio-options-flex { display: flex; gap: 25px; }
-
-.custom-radio {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-dark);
-}
-
+/* 6. Grid Form (Adjustable for Laptop) */
 .compact-grid-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+.double-field {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
 .field-box { display: flex; flex-direction: column; gap: 8px; }
 .field-box label { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+
 .field-box input, .field-box select {
   padding: 12px 14px;
   border: 1.5px solid var(--border);
@@ -151,6 +114,7 @@ html, body {
   background: white;
   font-size: 14px;
   transition: all 0.3s ease;
+  font-family: inherit;
 }
 
 .field-box input:focus, .field-box select:focus {
@@ -160,12 +124,7 @@ html, body {
   box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
 }
 
-.double-field {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
+/* 7. Action Button (Premium Dark Style) */
 .register-action-btn {
   margin-top: 24px;
   padding: 14px 28px;
@@ -191,37 +150,20 @@ html, body {
   cursor: not-allowed;
 }
 
+/* 8. Excel Section */
 .upload-box-ui {
   border: 2px dashed var(--border);
   padding: 40px;
   border-radius: 10px;
-  margin-bottom: 24px;
   background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
   text-align: center;
   transition: all 0.3s ease;
+  margin-top: 24px;
 }
 
 .upload-box-ui:hover {
   border-color: var(--primary);
   background: var(--primary-light);
-}
-
-.icon-ui { font-size: 48px; margin-bottom: 12px; }
-.browse-label {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 24px;
-  background: var(--primary);
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.browse-label:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
 }
 
 .app-content::-webkit-scrollbar { width: 8px; }
@@ -230,3 +172,5 @@ html, body {
   background: var(--border);
   border-radius: 4px;
 }
+
+.footer-spacer { height: 40px; width: 100%; }

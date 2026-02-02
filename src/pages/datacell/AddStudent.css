@@ -1,150 +1,333 @@
-/* Zero Scroll Configuration */
+/* AddStudent Page - Modern Form UI */
+:root {
+  --primary: #0066ff;
+  --primary-hover: #0052cc;
+  --primary-light: #e6f2ff;
+  --secondary: #6366f1;
+  --success: #10b981;
+  --danger: #ef4444;
+  --bg-light: #f9fafb;
+  --bg-lighter: #f3f4f6;
+  --border: #e5e7eb;
+  --text-dark: #1f2937;
+  --text-secondary: #6b7280;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
 html, body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden; /* Browser scroll khatm */
-  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-light);
 }
 
 .viewport-lock {
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background-color: #f4f6f9;
+  overflow: hidden;
 }
 
-/* Sidebar Corner Fixed */
-.fixed-sidebar {
-  width: 240px;
-  background-color: #1a202c;
-  color: white;
-  flex-shrink: 0;
-}
-
-.brand-header {
-  padding: 30px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  background: #111827;
-  color: #3b82f6;
-}
-
-.active-nav {
-  padding: 20px 30px;
-  background: rgba(59, 130, 246, 0.1);
-  border-left: 4px solid #3b82f6;
-  color: #3b82f6;
-  font-weight: bold;
-}
-
-/* Main Area Adjustment */
 .main-stage {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px 40px;
   height: 100vh;
+  overflow-y: auto;
+  padding: 40px;
+  background: linear-gradient(to bottom, var(--bg-light) 0%, var(--bg-lighter) 100%);
 }
 
+/* Header Styling */
 .header-flat {
-  margin-bottom: 15px;
+  margin-bottom: 32px;
+  flex-shrink: 0;
 }
 
 .header-flat h1 {
-  font-size: 24px;
-  color: #1f2937;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
 }
 
+.header-flat p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Form Container */
 .one-page-form {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 60px); /* Pura form screen mein fit karne ke liye */
+  gap: 28px;
+  width: 100%;
+  max-width: 1200px;
 }
 
+/* Dual Section - Grid Layout */
 .dual-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  flex-grow: 1; /* Space barabari se baantein */
-  margin-bottom: 20px;
+  gap: 32px;
+  align-items: start;
 }
 
+/* Glass Panel - Card Style */
 .glass-panel {
   background: white;
-  padding: 20px;
+  padding: 32px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
 }
 
+.glass-panel:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+/* Section Title */
 .sub-title {
-  font-size: 16px;
-  margin-bottom: 15px;
-  color: #4b5563;
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
 }
 
-/* Input Fields Fitting */
+.sub-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* Input Grid */
 .input-grid-web {
   display: grid;
-  gap: 12px;
+  gap: 18px;
 }
 
 .web-field {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
-.web-field label { font-size: 12px; font-weight: bold; color: #6b7280; margin-bottom: 4px; }
-.web-field input {
-  padding: 10px;
-  border: 1px solid #d1d5db;
+.web-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.2px;
+}
+
+.web-field input,
+.web-field select,
+.web-field textarea {
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
   border-radius: 8px;
-  background: #f9fafb;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
-/* Photo Tiles Fitting */
+.web-field input::placeholder,
+.web-field textarea::placeholder {
+  color: #d1d5db;
+}
+
+.web-field input:focus,
+.web-field select:focus,
+.web-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+}
+
+/* Biometric Photo Tiles */
 .biometric-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  flex-grow: 1;
+  gap: 16px;
 }
 
 .web-capture-box {
-  border: 2px dashed #d1d5db;
+  border: 2px dashed var(--border);
   border-radius: 10px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: 0.2s;
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+  transition: all 0.3s ease;
+  min-height: 140px;
+  position: relative;
+  overflow: hidden;
 }
 
-.web-capture-box:hover { border-color: #3b82f6; background: #eff6ff; }
-.icon-state { font-size: 28px; margin-bottom: 5px; }
-.icon-state.is-done { color: #10b981; }
+.web-capture-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
 
-/* Submit area fitting */
+.web-capture-box:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 102, 255, 0.15);
+}
+
+.web-capture-box:hover::before {
+  opacity: 0.05;
+}
+
+.web-capture-box > * {
+  position: relative;
+  z-index: 1;
+}
+
+.icon-state {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.web-capture-box span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.web-capture-box input {
+  display: none;
+}
+
+/* Footer Action */
 .footer-action {
-  padding-bottom: 20px;
+  margin-top: 16px;
+  padding-bottom: 40px;
+  flex-shrink: 0;
 }
 
 .web-action-btn {
   width: 100%;
-  padding: 16px;
-  background: #1f2937;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
   color: white;
   border: none;
   border-radius: 10px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  letter-spacing: 0.3px;
 }
-.web-action-btn:hover { background: #374151; }
+
+.web-action-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 102, 255, 0.3);
+}
+
+.web-action-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.web-action-btn:disabled {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Scrollbar Styling */
+.main-stage::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-stage::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-stage::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.main-stage::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dual-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .main-stage {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-stage {
+    padding: 24px 16px;
+  }
+
+  .header-flat h1 {
+    font-size: 24px;
+  }
+
+  .glass-panel {
+    padding: 24px;
+  }
+
+  .biometric-row {
+    grid-template-columns: 1fr;
+  }
+
+  .web-capture-box {
+    min-height: 100px;
+    padding: 16px;
+  }
+}
+/* Image Preview inside Biometric Box */
+.preview-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}

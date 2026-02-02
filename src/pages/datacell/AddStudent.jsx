@@ -159,7 +159,13 @@ function AddStudent() {
     formData.append("discipline", studentData.discipline);
     formData.append("session", studentData.session);
 
-    const images = [studentData.frontPic1, studentData.frontPic2, studentData.leftPic, studentData.rightPic];
+    const images = [
+      studentData.frontPic1,
+      studentData.frontPic2,
+      studentData.leftPic,
+      studentData.rightPic,
+    ];
+
     if (images.includes(null)) {
       alert("Error: All 4 photos are required.");
       setLoading(false);
@@ -171,20 +177,13 @@ function AddStudent() {
     try {
       await axios.post("http://127.0.0.1:8000/datacell/AddStudent", formData);
       alert("Student Registered Successfully!");
-    } 
-     finally {
+    } finally {
       setLoading(false);
     }
   };
+
   return (
     <div className="viewport-lock">
-      {/* Fixed Sidebar */}
-      {/* <aside className="fixed-sidebar">
-        <div className="brand-header">M-EYE PRO</div>
-        <div className="active-nav">ADD STUDENT</div>
-      </aside> */}
-
-      {/* Main Content Area */}
       <main className="main-stage">
         <div className="header-flat">
           <h1>Student Registration</h1>
@@ -193,7 +192,7 @@ function AddStudent() {
         <form onSubmit={handleSubmit} className="one-page-form">
           <div className="dual-section">
             
-            {/* Left: Academic Inputs */}
+            {/* Left Section */}
             <div className="glass-panel">
               <h3 className="sub-title">Student Details</h3>
               <div className="input-grid-web">
@@ -219,9 +218,8 @@ function AddStudent() {
                 </div>
               </div>
             </div>
-  
 
-            {/* Right: Photo Uploads */}
+            {/* Right Section */}
             <div className="glass-panel">
               <h3 className="sub-title">Face Biometrics</h3>
               <div className="biometric-row">
@@ -232,11 +230,25 @@ function AddStudent() {
                   { id: "rightPic", label: "Right View" },
                 ].map((pic) => (
                   <label key={pic.id} className="web-capture-box">
-                    <input type="file" name={pic.id} onChange={handleImageChange} hidden />
-                    <div className={`icon-state ${studentData[pic.id] ? "is-done" : ""}`}>
-                      {studentData[pic.id] ? "✅" : "📷"}
-                    </div>
-                    <span>{pic.label}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name={pic.id}
+                      onChange={handleImageChange}
+                    />
+
+                    {studentData[pic.id] ? (
+                      <img
+                        src={URL.createObjectURL(studentData[pic.id])}
+                        alt={pic.label}
+                        className="preview-img"
+                      />
+                    ) : (
+                      <>
+                        <div className="icon-state">📷</div>
+                        <span>{pic.label}</span>
+                      </>
+                    )}
                   </label>
                 ))}
               </div>
