@@ -8,6 +8,7 @@ import Enrollment from './pages/datacell/Enrollment';
 import CourseAllocation from './pages/datacell/CourseAllocation';
 import AddTeacher from './pages/admin/teacher/AddTeacher';
 import FacultyList from './pages/admin/teacher/getAllTeachers';
+import DVRManagement from './pages/admin/Camera/getALLDVR';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -28,6 +29,7 @@ function App() {
           <Route path="/allocation" element={<CourseAllocation />} />
           <Route path="/add-teacher" element={<AddTeacher />} />
           <Route path="/getAllTeachers" element={<FacultyList />} />
+          <Route path="/dvr-management" element={<DVRManagement />} />
         </Route>
       </Routes>
     </Router>

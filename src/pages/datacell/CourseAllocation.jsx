@@ -58,7 +58,7 @@ function CourseAllocation() {
     setLoading(true);
     const formData = new FormData();
     formData.append("file", excelFile);
-    console.log("Uploading Excel File:", excelFile);q
+    // console.log("Uploading Excel File:", excelFile);q
 
     try {
       const response = await axios.post(

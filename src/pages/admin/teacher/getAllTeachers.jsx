@@ -3,13 +3,14 @@ import axios from "axios";
 import "./getAllTeachers.css";
 
 function FacultyList() {
+  const name = "http://127.0.0.1:8000/";
   const [search, setSearch] = useState("");
   const [facultyMembers, setFacultyMembers] = useState([]);
 
   // 🔹 Fetch teachers from backend
   useEffect(() => {
     axios
-      .get("http://localhost:8000/teacher/getAllTeachers")
+      .get("http://localhost:8000/admin/getAllTeachers")
       .then((res) => {
         setFacultyMembers(res.data.teachers || []);
       })
@@ -43,7 +44,7 @@ function FacultyList() {
             <img
               src={
                 faculty.pic
-                  ? faculty.pic
+                  ? `${name}${faculty.pic}`
                   : "/images/default-user.png"
               }
               alt={faculty.name}

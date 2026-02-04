@@ -23,13 +23,26 @@ const handleLoginSubmit = async (e) => {
     const response = await axios.post('http://127.0.0.1:8000/Authorization/Login', formData);
 
     if (response.data.Role) {
-      // 1. Role ko save karein (taki sidebar ko pata chale kya dikhana hai)
-      localStorage.setItem('userRole', response.data.Role.toLowerCase());
+      // 1. Role aur UserId ko save karein
+      const userRole = response.data.Role.toLowerCase();
+      localStorage.setItem('userRole', userRole);
+      localStorage.setItem('userId', userId);
       
-      console.log("Login Successful! Redirecting to Add Student...");
+      // 2. Role ke hisaab se SPECIFIC DASHBOARD par bhejein
+      let redirectPath = '/add-student'; // default
 
-      // 2. DEFAULT PAGE: Login hote hi seedha Add Student par bhejein
-      navigate('/add-student'); 
+      if (userRole === 'datacell') {
+        redirectPath = '/add-student';
+      } else if (userRole === 'admin') {
+        redirectPath = '/add-teacher';
+      } else if (userRole === 'teacher') {
+        redirectPath = '/teacher-dashboard'; // aagar ye route ho
+      } else if (userRole === 'director') {
+        redirectPath = '/director-dashboard'; // aagar ye route ho
+      }
+
+      console.log(`Login Successful! Role: ${userRole} - Redirecting to ${redirectPath}`);
+      navigate(redirectPath);
     }
   } catch (err) {
     setError(err.response?.data?.detail || "Login failed. Please check your credentials.");
