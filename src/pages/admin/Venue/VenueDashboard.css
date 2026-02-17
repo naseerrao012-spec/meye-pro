@@ -1,0 +1,159 @@
+:root {
+  --primary-blue: #0066ff;
+  --bg-main: #f1f5f9;
+  --glass: rgba(255, 255, 255, 0.9);
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --success-green: #2e7d32;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* Header Styling */
+.premium-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+.premium-header h1 {
+  font-size: 28px;
+  color: var(--text-dark);
+  margin: 0;
+  font-weight: 800;
+}
+
+.premium-header p {
+  color: var(--text-light);
+  margin-top: 5px;
+}
+
+/* Main Grid - Spreads across the full screen */
+.venue-grid-stage {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+/* Premium Card Design */
+.venue-card-premium {
+  background: white;
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.venue-card-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 102, 255, 0.1);
+}
+
+.card-top-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.venue-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  background: #eff6ff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.venue-info {
+  flex: 1;
+}
+
+.venue-title {
+  font-size: 20px;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.course-name {
+  font-size: 16px;
+  color: var(--primary-blue);
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.meta-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.discipline-tag {
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* Premium Buttons Layout */
+.card-actions-premium {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.cam-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+}
+
+.front-btn {
+  color: var(--primary-blue);
+}
+
+.back-btn {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+}
+
+.cam-btn:hover {
+  filter: brightness(0.9);
+  transform: scale(1.02);
+}
+
+/* Loader Styling */
+.spinner-premium {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e2e8f0;
+  border-top: 5px solid var(--primary-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -38,6 +38,10 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
         {userRole === 'admin' && (
           <>
             <div className="nav-section-label admin-label">ADMINISTRATION</div>
+            {/* NEW VENUE MONITORING LINK */}
+            <Link to="/venue-dashboard" onClick={onClose} className={`nav-item ${path === '/venue-dashboard' ? 'active' : ''}`}>
+              <span className="nav-icon">🏛️</span> VENUE MONITORING
+            </Link>
             <Link to="/add-teacher" onClick={onClose} className={`nav-item ${path === '/add-teacher' ? 'active' : ''}`}>
               <span className="nav-icon">👨‍🏫</span> ADD TEACHER
             </Link>

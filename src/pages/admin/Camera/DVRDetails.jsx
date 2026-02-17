@@ -161,7 +161,7 @@ function DVRDetails() {
                   required 
                 />
 
-                {/* <div className="view-selection">
+                <div className="view-selection">
                   <p>Select View:</p>
                   <label>
                     <input 
@@ -181,34 +181,7 @@ function DVRDetails() {
                       onChange={handleInputChange}
                     /> Back
                   </label>
-                </div> */}
-                {/* --- FIXED RADIO BUTTONS SECTION --- */}
-<div className="view-selection">
-  <p className="selection-title">Select View:</p>
-  <div className="radio-group-horizontal">
-    <label className="radio-label">
-      <input 
-        type="radio" 
-        name="placement" 
-        value="Front" 
-        checked={newCam.placement === "Front"}
-        onChange={handleInputChange}
-      />
-      <span>Front</span>
-    </label>
-
-    <label className="radio-label">
-      <input 
-        type="radio" 
-        name="placement" 
-        value="Back" 
-        checked={newCam.placement === "Back"}
-        onChange={handleInputChange}
-      />
-      <span>Back</span>
-    </label>
-  </div>
-</div>
+                </div>
 
                 <div className="modal-actions">
                   <button type="button" className="btn-cancel" onClick={() => setIsModalOpen(false)}>CANCEL</button>
