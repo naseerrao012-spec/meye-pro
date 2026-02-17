@@ -9,6 +9,7 @@ import CourseAllocation from './pages/datacell/CourseAllocation';
 import AddTeacher from './pages/admin/teacher/AddTeacher';
 import FacultyList from './pages/admin/teacher/getAllTeachers';
 import DVRManagement from './pages/admin/Camera/getALLDVR';
+import DVRDetails from './pages/admin/Camera/DVRDetails';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/add-teacher" element={<AddTeacher />} />
           <Route path="/getAllTeachers" element={<FacultyList />} />
           <Route path="/dvr-management" element={<DVRManagement />} />
+          <Route path="/dvr-details" element={<DVRDetails />} />
         </Route>
       </Routes>
     </Router>

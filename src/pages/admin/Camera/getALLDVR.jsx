@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./getALLDVR.css";
 
 function DVRManagement() {
@@ -7,18 +8,12 @@ function DVRManagement() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
-  // Form State: admin_id ko shuru mein khali rakhein
   const [formData, setFormData] = useState({
-    Name: "",
-    IP: "",
-    MAC: "",
-    Password: "",
-    channel: "",
-    admin_id: "" 
+    Name: "", IP: "", MAC: "", Password: "", channel: "", admin_id: "" 
   });
 
-  // 1. Sirf Login wali ID LocalStorage se nikalna
   useEffect(() => {
     const loggedInId = localStorage.getItem("userId");
     if (loggedInId) {
@@ -41,13 +36,10 @@ function DVRManagement() {
 
   const handleAddDVR = async (e) => {
     e.preventDefault();
-    
-    // Safety Check: Agar userId nahi mili to user ko inform karein
     if (!formData.admin_id) {
       alert("Error: Admin ID not found. Please log in again.");
       return;
     }
-
     try {
       const response = await axios.post("http://localhost:8000/admin/AddDVR", formData);
       alert(response.data.message);
@@ -69,7 +61,7 @@ function DVRManagement() {
       <main className="main-stage">
         <div className="header-flat">
           <h1>DVR Management</h1>
-          <p>Logged in as: <span style={{color: '#0066ff', fontWeight: 'bold'}}>{formData.admin_id || "Unknown"}</span></p>
+          <p>Logged in as: <span style={{color: '#0c0c0c', fontWeight: 'bold'}}>{formData.admin_id || "Guest"}</span></p>
         </div>
 
         <div className="dvr-wrapper">
@@ -79,21 +71,22 @@ function DVRManagement() {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Search DVR by name or MAC address..."
+                placeholder="Search DVR..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
 
             {loading ? (
-              <div className="dvr-status">
-                <div className="spinner"></div>
-                <p>Fetching DVRs...</p>
-              </div>
+              <div className="dvr-status"><div className="spinner"></div></div>
             ) : (
               <div className="dvr-list">
                 {filteredDVRs.map((dvr, index) => (
-                  <div key={dvr.id || index} className="dvr-card">
+                  <div 
+                    key={index} 
+                    className="dvr-card" 
+                    onClick={() => navigate(`/dvr-details`, { state: { dvr } })}
+                  >
                     <div className="dvr-card-left">
                       <div className="dvr-icon-box">📹</div>
                       <div className="dvr-details">
@@ -117,20 +110,14 @@ function DVRManagement() {
           <div className="modal-overlay">
             <div className="modal-content glass-panel">
               <div className="modal-header">
-                <div className="dvr-icon-box small">📹</div>
                 <h2>Add New DVR</h2>
               </div>
-              
               <form onSubmit={handleAddDVR} className="modal-form">
-                <div className="form-group">
-                  <label>DVR Name</label>
-                  <input type="text" placeholder="Enter Name" required onChange={(e) => setFormData({...formData, Name: e.target.value})} />
-                </div>
+                <input className="modal-input" type="text" placeholder="DVR Name" required onChange={(e) => setFormData({...formData, Name: e.target.value})} />
                 <input className="modal-input" type="text" placeholder="IP Address" required onChange={(e) => setFormData({...formData, IP: e.target.value})} />
                 <input className="modal-input" type="text" placeholder="MAC Address" required onChange={(e) => setFormData({...formData, MAC: e.target.value})} />
-                <input className="modal-input" type="password" placeholder="DVR Password" required onChange={(e) => setFormData({...formData, Password: e.target.value})} />
-                <input className="modal-input" type="number" placeholder="Total Channels" required onChange={(e) => setFormData({...formData, channel: e.target.value})} />
-
+                <input className="modal-input" type="password" placeholder="Password" required onChange={(e) => setFormData({...formData, Password: e.target.value})} />
+                <input className="modal-input" type="number" placeholder="Channels" required onChange={(e) => setFormData({...formData, channel: e.target.value})} />
                 <div className="modal-actions">
                   <button type="button" className="btn-cancel" onClick={() => setShowModal(false)}>CANCEL</button>
                   <button type="submit" className="btn-save">SAVE</button>

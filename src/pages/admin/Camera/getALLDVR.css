@@ -1,16 +1,14 @@
-/* Add these new styles to your existing getALLDVR.css */
-
-/* Floating Action Button (FAB) */
+/* --- Floating Action Button (FAB) --- */
 .fab-add-dvr {
   position: fixed;
   bottom: 40px;
   right: 40px;
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, var(--primary), var(--info));
+  background: linear-gradient(135deg, #0066ff, #00d2ff); /* Premium Blue Gradient */
   color: white;
   border: none;
-  border-radius: 18px; /* Slightly squared-round shape */
+  border-radius: 18px;
   font-size: 32px;
   font-weight: bold;
   cursor: pointer;
@@ -27,15 +25,15 @@
   box-shadow: 0 8px 25px rgba(0, 102, 255, 0.5);
 }
 
-/* Modal Overlay */
+/* --- Modal Overlay (Premium Blur Effect) --- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(31, 41, 55, 0.6);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 23, 42, 0.6); /* Darker slate overlay */
+  backdrop-filter: blur(8px); /* More premium blur */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,10 +41,14 @@
   padding: 20px;
 }
 
-/* Modal Content */
+/* --- Modal Content Card --- */
 .modal-content {
+  background: white;
   width: 100%;
   max-width: 450px;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   animation: modalSlideUp 0.4s ease-out;
 }
 
@@ -60,77 +62,111 @@
   align-items: center;
   gap: 15px;
   margin-bottom: 25px;
-  color: var(--text-dark);
+  color: #1e293b;
 }
 
-.dvr-icon-box.small {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+.modal-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
 }
 
-/* Form Styles */
+/* --- Premium Form Styling --- */
 .modal-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
 }
 
 .form-group label {
   display: block;
+  font-size: 11px;
+  color: #0066ff;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #334155;
+  outline: none;
+  transition: all 0.3s;
+  background: #f8fafc;
+}
+
+.modal-input:focus {
+  border-color: #0066ff;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+}
+
+/* --- Custom Radio Buttons (Select View) --- */
+.view-selection {
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+.view-selection p {
+  margin: 0 0 10px 0;
   font-size: 12px;
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-weight: 700;
+  color: #64748b;
   text-transform: uppercase;
 }
 
-.form-group input, .modal-input {
-  width: 100%;
-  padding: 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  outline: none;
-  transition: 0.3s;
+.radio-group {
+  display: flex;
+  gap: 20px;
 }
 
-.form-group input:focus, .modal-input:focus {
-  border-color: var(--primary);
-  background-color: var(--primary-light);
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1e293b;
 }
 
-/* Modal Buttons */
+/* --- Action Buttons --- */
 .modal-actions {
   display: flex;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .btn-cancel {
   flex: 1;
   padding: 14px;
   background: white;
-  border: 1.5px solid var(--border);
-  color: var(--text-secondary);
-  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  color: #64748b;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .btn-cancel:hover {
-  background: var(--bg-lighter);
-  border-color: var(--text-secondary);
+  background: #f1f5f9;
+  color: #1e293b;
 }
 
 .btn-save {
-  flex: 1;
+  flex: 1.5;
   padding: 14px;
-  background: var(--primary);
+  background: #0066ff;
   border: none;
   color: white;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
@@ -138,6 +174,60 @@
 }
 
 .btn-save:hover {
-  background: var(--primary-hover);
+  background: #0052cc;
   box-shadow: 0 6px 15px rgba(0, 102, 255, 0.3);
+  transform: translateY(-1px);
 }
+/* Container for the entire radio section */
+.view-selection {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selection-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Flexbox to lock buttons in one row */
+.radio-group-horizontal {
+  display: flex;
+  flex-direction: row; /* Force them to be side-by-side */
+  align-items: center;
+  gap: 40px; /* Space between Front and Back */
+  padding-left: 5px;
+}
+
+/* Individual Label Styling */
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the circle and text */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #334155;
+}
+
+/* Radio Circle Styling */
+.radio-label input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #0066ff; /* Your Premium Blue Color */
+  margin: 0;
+}
+
+/* Modal Actions alignment */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+
