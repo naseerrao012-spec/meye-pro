@@ -1,24 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./VenueDashboard.css";
 
 function VenueDashboard() {
   const [venues, setVenues] = useState([]);
   const [loading, setLoading] = useState(true);
+  const fileInputRef = useRef(null);
+  const [selectedVenue, setSelectedVenue] = useState(null);
 
   const fetchVenues = async () => {
     try {
       setLoading(true);
-      // Integration Point: Calling your FastAPI endpoint
       const res = await axios.get("http://localhost:8000/admin/getBusyVenues");
-      
-      // Backend returns { "Venues": [...] }
       setVenues(res.data.Venues || []);
     } catch (err) {
       console.error("Error fetching venues:", err);
-      // Optional: Error state handle kar sakte hain
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Button click handle karne ke liye function
+  const onCamClick = (venueId) => {
+    setSelectedVenue(venueId);
+    fileInputRef.current.click(); // File explorer khulega
+  };
+
+  // File select hone par backend par bhejna
+  const handleVideoUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file || !selectedVenue) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("venue_id", selectedVenue);
+
+    try {
+      alert("Video uploading & processing started...");
+      const res = await axios.post("http://localhost:8000/admin/generate_Teacher_CHR_Report", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      alert(res.data.status);
+    } catch (err) {
+      alert(err.response?.data?.detail || "Error starting process");
     }
   };
 
@@ -28,7 +52,15 @@ function VenueDashboard() {
 
   return (
     <div className="dashboard-container">
-      {/* Header Section */}
+      {/* Hidden File Input */}
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        style={{ display: 'none' }} 
+        accept="video/*"
+        onChange={handleVideoUpload}
+      />
+
       <header className="premium-header">
         <div className="header-content">
           <h1>Live Venue Monitoring</h1>
@@ -48,31 +80,21 @@ function VenueDashboard() {
                   <div className="venue-icon">🏛️</div>
                 </div>
                 <div className="venue-info">
-                  {/* Mapping: row[0] as venue_id */}
                   <h2 className="venue-title">Venue: {venue.venue_id}</h2>
-                  {/* Mapping: row[5] as Course */}
                   <h3 className="course-name">{venue.Course}</h3>
                   <div className="meta-details">
-                    {/* Mapping: row[4] as Teacher */}
                     <span>👤 {venue.Teacher}</span>
-                    {/* Mapping: row[1]-row[3]row[2] as Discipline */}
                     <span className="discipline-tag">{venue.Discipline}</span>
                   </div>
                 </div>
               </div>
 
               <div className="card-actions-premium">
-                <button 
-                  className="cam-btn front-btn" 
-                  onClick={() => console.log(`Opening Front Cam for Schedule: ${venue.Schedule_id}`)}
-                >
+                <button className="cam-btn front-btn" onClick={() => onCamClick(venue.venue_id)}>
                   <span className="icon">📷</span>
                   <span className="label">Front Cam</span>
                 </button>
-                <button 
-                  className="cam-btn back-btn"
-                  onClick={() => console.log(`Opening Back Cam for Schedule: ${venue.Schedule_id}`)}
-                >
+                <button className="cam-btn back-btn" onClick={() => onCamClick(venue.venue_id)}>
                   <span className="icon">📸</span>
                   <span className="label">Back Cam</span>
                 </button>

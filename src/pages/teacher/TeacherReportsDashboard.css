@@ -1,0 +1,183 @@
+/* --- Global Container --- */
+.reports-full-page { 
+    padding: 30px; 
+    background-color: #f8fafb; 
+    min-height: 100vh; 
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Header & Toggle --- */
+.reports-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: #fff; 
+    padding: 20px 40px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    margin-bottom: 30px; 
+}
+
+.toggle-container { 
+    background: #f0f2f5; 
+    padding: 5px; 
+    border-radius: 50px; 
+    display: flex; 
+}
+
+.toggle-btn { 
+    border: none; 
+    padding: 12px 25px; 
+    border-radius: 50px; 
+    cursor: pointer; 
+    font-weight: 600; 
+    transition: 0.3s; 
+    background: transparent; 
+    color: #666;
+}
+
+.toggle-btn.active { 
+    background: #00796b; 
+    color: white; 
+    box-shadow: 0 4px 10px rgba(0, 121, 107, 0.2);
+}
+
+/* --- Grid & Cards --- */
+.reports-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+    gap: 25px; 
+}
+
+.report-card-premium { 
+    background: white; 
+    border-radius: 20px; 
+    padding: 25px; 
+    position: relative; 
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
+    border: 1px solid #edf2f7;
+    transition: transform 0.3s ease;
+}
+
+.report-card-premium:hover {
+    transform: translateY(-5px);
+}
+
+.card-accent-line { 
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 6px; 
+    background: linear-gradient(90deg, #00796b, #004d40); 
+}
+
+/* --- Details Layout --- */
+.report-title { color: #2d3748; font-size: 1.4rem; margin-bottom: 20px; text-align: center; }
+.detail-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; }
+.section-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
+
+/* --- 4-Time Grid (CHR) - Optimized --- */
+.time-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.time-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 12px; 
+    border-radius: 12px; 
+    text-align: center;
+}
+
+.teacher-row { background: #f0f7ff; border: 1px solid #e1effe; }
+.class-row { background: #f6fff9; border: 1px solid #def7ec; }
+
+/* --- Activity Grid (CAR) - Perfectly Balanced --- */
+.activity-grid-premium { 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.activity-box { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 18px; 
+    border-radius: 15px; 
+    background: #fafafa; 
+    border: 1px solid #f0f0f0; 
+    transition: 0.3s;
+}
+
+.activity-box.stand { background: #fff5f5; border-color: #ffe3e3; }
+.activity-box.sit { background: #f0fff4; border-color: #c6f6d5; }
+
+/* --- Labels & Values --- */
+.stat-label { 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    color: #718096; 
+    text-transform: uppercase; 
+    margin-bottom: 6px; 
+    letter-spacing: 0.5px;
+}
+
+.stat-value { font-size: 1.15rem; font-weight: 800; }
+.act-icon { font-size: 1.6rem; margin-bottom: 5px; }
+
+/* --- Specific Colors --- */
+.entry-color { color: #3182ce; }
+.exit-color { color: #e53e3e; }
+.in-color { color: #059669; }
+.out-color { color: #7c3aed; }
+.stand-text { color: #dc2626; }
+.sit-text { color: #16a34a; }
+
+/* --- Footer & Centered Button --- */
+.card-footer-layout { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    margin-top: 25px; 
+    gap: 15px; 
+    padding-top: 20px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.status-pill { 
+    padding: 8px 20px; 
+    border-radius: 50px; 
+    font-weight: 800; 
+    font-size: 0.85rem; 
+    text-transform: uppercase;
+    background: #fef3c7; 
+    color: #92400e; 
+}
+
+/* Status Variations */
+.held { background: #e8f5e9; color: #2e7d32; }
+.held-late { background: #fff3e0; color: #ef6c00; }
+
+.check-media-btn {
+    background:  #3182ce;
+    color: white;
+    border: none;
+    padding: 14px 0;
+    width: 100%;
+    max-width: 250px; /* Perfectly centered width */
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.15);
+}
+
+.check-media-btn:hover { 
+    background: #004d40; 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0, 121, 107, 0.25);
+}

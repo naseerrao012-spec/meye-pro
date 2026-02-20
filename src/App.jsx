@@ -11,6 +11,8 @@ import FacultyList from './pages/admin/teacher/getAllTeachers';
 import DVRManagement from './pages/admin/Camera/getALLDVR';
 import DVRDetails from './pages/admin/Camera/DVRDetails'; 
 import Venue from './pages/admin/Venue/VenueDashboard';
+import TeacherReportsDashboard from './pages/teacher/TeacherReportsDashboard';
+import TeacherSchedule from './pages/teacher/TeacherSchedule';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -34,6 +36,9 @@ function App() {
           <Route path="/dvr-management" element={<DVRManagement />} />
           <Route path="/dvr-details" element={<DVRDetails />} />
           <Route path="/venue-dashboard" element={<Venue />} /> 
+          <Route path="/teacher-schedule" element={<TeacherSchedule />} />
+          <Route path="/teacher-reports" element={<TeacherReportsDashboard teacherID={123} />} />
+
         </Route>
       </Routes>
     </Router>

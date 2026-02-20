@@ -53,6 +53,19 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             </Link>
           </>
         )}
+        {/* TEACHER SECTION - sirf teacher role ko dikhein */}
+        {userRole?.toLowerCase() === 'teacher' && (
+          <>
+           <div className="nav-section-label">TEACHER PANEL</div>
+            <Link to="/teacher-schedule" onClick={onClose} className={`nav-item ${path === '/teacher-schedule' ? 'active' : ''}`}>
+            <span className="nav-icon">📅</span> TODAY SCHEDULE
+            </Link>
+            
+            <Link to="/teacher-reports" onClick={onClose} className={`nav-item ${path === '/teacher-reports' ? 'active' : ''}`}>
+            <span className="nav-icon">📊</span> Teacher CHR/CAR REPORTS
+            </Link>
+          </>
+      )}
 
         <div className="sidebar-bottom-action">
           <Link to="/Login" onClick={onClose} className="logout-btn">
