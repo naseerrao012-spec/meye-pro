@@ -68,34 +68,7 @@ function AddTeacher() {
 
         <form onSubmit={handleSubmit} className="one-page-form">
           <div className="dual-section">
-            
-            {/* Left Section - Matches Student Details style */}
-            <div className="glass-panel">
-              <h3 className="sub-title">Personal Details</h3>
-              <div className="input-grid-web">
-                <div className="web-field">
-                  <label>Full Name</label>
-                  <input name="name" placeholder="Full Name" onChange={handleChange} required />
-                </div>
-                <div className="web-field">
-                  <label>Teacher ID / CNIC</label>
-                  <input name="cnic" placeholder="ID Number" onChange={handleChange} required />
-                </div>
-                <div className="web-field">
-                  <label>Account Password</label>
-                  <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={teacherData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
 
-            {/* Right Section - Matches Face Biometrics style */}
             <div className="glass-panel">
               <h3 className="sub-title">Face Biometrics</h3>
               <div className="biometric-row">
@@ -130,6 +103,36 @@ function AddTeacher() {
                 ))}
               </div>
             </div>
+            
+            
+            {/* Left Section - Matches Student Details style */}
+            <div className="glass-panel">
+              <h3 className="sub-title">Personal Details</h3>
+              <div className="input-grid-web">
+                <div className="web-field">
+                  <label>Full Name</label>
+                  <input name="name" placeholder="Full Name" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Teacher ID / CNIC</label>
+                  <input name="cnic" placeholder="ID Number" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Account Password</label>
+                  <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={teacherData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Section - Matches Face Biometrics style */}
+            
           </div>
 
           <div className="footer-action">

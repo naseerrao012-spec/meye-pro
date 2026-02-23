@@ -13,6 +13,7 @@ import DVRDetails from './pages/admin/Camera/DVRDetails';
 import Venue from './pages/admin/Venue/VenueDashboard';
 import TeacherReportsDashboard from './pages/teacher/TeacherReportsDashboard';
 import TeacherSchedule from './pages/teacher/TeacherSchedule';
+import TeacherTimetableUpload from './pages/admin/TeacherTimetableUpload';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -32,6 +33,8 @@ function App() {
           <Route path="/enrollment" element={<Enrollment />} />
           <Route path="/allocation" element={<CourseAllocation />} />
           <Route path="/add-teacher" element={<AddTeacher />} />
+         <Route path="upload" element={<TeacherTimetableUpload />} />
+          
           <Route path="/getAllTeachers" element={<FacultyList />} />
           <Route path="/dvr-management" element={<DVRManagement />} />
           <Route path="/dvr-details" element={<DVRDetails />} />

@@ -51,6 +51,9 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             <Link to="/dvr-management" onClick={onClose} className={`nav-item ${path === '/dvr-management' ? 'active' : ''}`}>
               <span className="nav-icon">📹</span> DVR MANAGEMENT
             </Link>
+            <Link to="/upload" onClick={onClose} className={`nav-item ${path === '/upload-timetable' ? 'active' : ''}`}>
+              <span className="nav-icon">📅</span> UPLOAD TIMETABLE
+            </Link>
           </>
         )}
         {/* TEACHER SECTION - sirf teacher role ko dikhein */}

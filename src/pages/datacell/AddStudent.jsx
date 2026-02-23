@@ -191,35 +191,6 @@ function AddStudent() {
 
         <form onSubmit={handleSubmit} className="one-page-form">
           <div className="dual-section">
-            
-            {/* Left Section */}
-            <div className="glass-panel">
-              <h3 className="sub-title">Student Details</h3>
-              <div className="input-grid-web">
-                <div className="web-field">
-                  <label>Full Name</label>
-                  <input name="name" placeholder="Full Name" onChange={handleChange} required />
-                </div>
-                <div className="web-field">
-                  <label>Reg No</label>
-                  <input name="regNo" placeholder="Reg No" onChange={handleChange} required />
-                </div>
-                <div className="web-field">
-                  <label>Discipline</label>
-                  <input name="discipline" placeholder="Discipline" onChange={handleChange} required />
-                </div>
-                <div className="web-field">
-                  <label>Session</label>
-                  <input name="session" placeholder="Session" onChange={handleChange} required />
-                </div>
-                <div className="web-field">
-                  <label>Year</label>
-                  <input name="year" placeholder="Year" onChange={handleChange} />
-                </div>
-              </div>
-            </div>
-
-            {/* Right Section */}
             <div className="glass-panel">
               <h3 className="sub-title">Face Biometrics</h3>
               <div className="biometric-row">
@@ -253,6 +224,36 @@ function AddStudent() {
                 ))}
               </div>
             </div>
+            
+            {/* Left Section */}
+            <div className="glass-panel">
+              <h3 className="sub-title">Student Details</h3>
+              <div className="input-grid-web">
+                <div className="web-field">
+                  <label>Full Name</label>
+                  <input name="name" placeholder="Full Name" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Reg No</label>
+                  <input name="regNo" placeholder="Reg No" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Discipline</label>
+                  <input name="discipline" placeholder="Discipline" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Session</label>
+                  <input name="session" placeholder="Session" onChange={handleChange} required />
+                </div>
+                <div className="web-field">
+                  <label>Year</label>
+                  <input name="year" placeholder="Year" onChange={handleChange} />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Section */}
+            
           </div>
 
           <div className="footer-action">

@@ -34,7 +34,7 @@ const handleLoginSubmit = async (e) => {
       if (userRole === 'datacell') {
         redirectPath = '/add-student';
       } else if (userRole === 'admin') {
-        redirectPath = '/add-teacher';
+        redirectPath = '/getAllTeachers';
       } else if (userRole === 'teacher') {
         redirectPath = '/teacher-schedule'; // aagar ye route ho
       } else if (userRole === 'director') {
