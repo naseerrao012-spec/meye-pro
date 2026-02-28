@@ -27,7 +27,7 @@ const TeacherTimetableUpload = () => {
 
     try {
       setIsUploading(true);
-      const response = await axios.post("http://localhost:8000/admin/upload-timetable", formData);
+      const response = await axios.post("http://localhost:8000/admin/upload_timetable", formData);
       alert("Timetable Uploaded Successfully!");
       setSelectedFile(null);
     } catch (error) {

@@ -1,0 +1,128 @@
+.courses-container {
+  padding: 30px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header-info h1 {
+  font-size: 1.8rem;
+  color: #2d3436;
+  margin: 0;
+}
+
+.session-badge {
+  background: #e17055;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.course-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  border-left: 5px solid #0984e3;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.course-card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.course-code {
+  font-weight: 700;
+  color: #636e72;
+  font-size: 0.9rem;
+}
+
+.course-tag {
+  color: #00b894;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.course-title {
+  font-size: 1.3rem;
+  color: #2d3436;
+  margin-bottom: 20px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.course-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #f1f2f6;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item .label {
+  font-size: 0.7rem;
+  color: #b2bec3;
+  text-transform: uppercase;
+}
+
+.detail-item .value {
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.view-attendance-btn {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0984e3;
+  background: transparent;
+  color: #0984e3;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.view-attendance-btn:hover {
+  background: #0984e3;
+  color: white;
+}
+
+/* Empty State & Loader */
+.empty-state-box {
+  text-align: center;
+  padding: 100px;
+  background: white;
+  border-radius: 20px;
+}
+.empty-icon { font-size: 4rem; display: block; margin-bottom: 20px; }

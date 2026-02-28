@@ -67,8 +67,21 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             <Link to="/teacher-reports" onClick={onClose} className={`nav-item ${path === '/teacher-reports' ? 'active' : ''}`}>
             <span className="nav-icon">📊</span> Teacher CHR/CAR REPORTS
             </Link>
+
+            <Link to="/Allocate_courses" onClick={onClose} className={`nav-item ${path === '/Allocate_courses' ? 'active' : ''}`}>
+            <span className="nav-icon">📚</span> Allocated Courses
+            </Link>
           </>
-      )}
+        )}
+        {/* STUDENT SECTION - Naya section Enrolled Courses ke liye */}
+        {userRole === 'student' && (
+          <>
+            <div className="nav-section-label">STUDENT PANEL</div>
+            <Link to="/enrolled-courses" onClick={onClose} className={`nav-item ${path === '/enrolled-courses' ? 'active' : ''}`}>
+              <span className="nav-icon">📚</span> ENROLLED COURSES
+            </Link>
+          </>
+        )}
 
         <div className="sidebar-bottom-action">
           <Link to="/Login" onClick={onClose} className="logout-btn">

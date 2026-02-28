@@ -14,6 +14,8 @@ import Venue from './pages/admin/Venue/VenueDashboard';
 import TeacherReportsDashboard from './pages/teacher/TeacherReportsDashboard';
 import TeacherSchedule from './pages/teacher/TeacherSchedule';
 import TeacherTimetableUpload from './pages/admin/TeacherTimetableUpload';
+import EnrolledCourses from "./pages/students/EnrolledCourses";
+import AllocatedCourses from './pages/teacher/AllocatedCourses';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -41,7 +43,8 @@ function App() {
           <Route path="/venue-dashboard" element={<Venue />} /> 
           <Route path="/teacher-schedule" element={<TeacherSchedule />} />
           <Route path="/teacher-reports" element={<TeacherReportsDashboard teacherID={123} />} />
-
+          <Route path="/enrolled-courses" element={<EnrolledCourses />} />
+          <Route path="/Allocate_courses" element={<AllocatedCourses/>}/>
         </Route>
       </Routes>
     </Router>

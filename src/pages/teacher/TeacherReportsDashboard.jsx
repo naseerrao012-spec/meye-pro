@@ -9,8 +9,7 @@ const TeacherReportsDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   
   const [showVideoModal, setShowVideoModal] = useState(false);
-  const [videoUrl, setVideoUrl] = useState(null); // Single URL for the current active view
-  const [rawVids, setRawVids] = useState({ in: null, out: null });
+  const [videoUrls, setVideoUrls] = useState({ in: null, out: null });
   const [activeVideo, setActiveVideo] = useState("in");
   const [modalLoading, setModalLoading] = useState(false);
 
@@ -37,12 +36,19 @@ const TeacherReportsDashboard = () => {
       const res = await axios.get(`http://localhost:8000/teacher/getScheduleVideo?date=${selectedDate}&scheduleId=${schId}`);
       
       const vids = res.data.Videos;
-      setRawVids({
-        in: vids.Time_in_video,
-        out: vids.Time_out_video
+
+      const formatUrl = (path) => {
+        if (!path) return null;
+        const cleanPath = path.replace(/\\/g, '/'); 
+        const separator = cleanPath.startsWith('/') ? '' : '/';
+        // Base URL ke sath full path
+        return `http://localhost:8000${separator}${cleanPath}`;
+      };
+
+      setVideoUrls({
+        in: formatUrl(vids.Time_in_video),
+        out: formatUrl(vids.Time_out_video)
       });
-      
-      loadVideo(vids.Time_in_video); // Default to "in" video
       setActiveVideo("in");
     } catch (err) {
       alert("Media files not accessible.");
@@ -52,42 +58,9 @@ const TeacherReportsDashboard = () => {
     }
   };
 
-  // Function to load video as a Blob to bypass codec/partial content issues
-  const loadVideo = async (path) => {
-    if (!path) {
-      setVideoUrl(null);
-      return;
-    }
-    try {
-      const cleanPath = path.replace(/\\/g, '/').replace(/^\/+/, '');
-      const fullUrl = `http://localhost:8000/${cleanPath}`;
-      
-      // Fetch as blob to force browser to handle the file data directly
-      const response = await axios.get(fullUrl, { responseType: 'blob' });
-      const blobUrl = URL.createObjectURL(response.data);
-      setVideoUrl(blobUrl);
-    } catch (error) {
-      console.error("Blob Loading Error:", error);
-      setVideoUrl(null);
-    }
-  };
-
-  // Switch between In and Out videos
-  const toggleVideo = (type) => {
-    setActiveVideo(type);
-    loadVideo(rawVids[type]);
-  };
-
   useEffect(() => {
     fetchReports(selectedDate);
   }, [selectedDate, teacherID]);
-
-  // Cleanup Blob URL to prevent memory leaks
-  useEffect(() => {
-    return () => {
-      if (videoUrl) URL.revokeObjectURL(videoUrl);
-    };
-  }, [videoUrl]);
 
   return (
     <div className="reports-full-page">
@@ -100,6 +73,7 @@ const TeacherReportsDashboard = () => {
               type="date" 
               className="custom-date-input"
               value={selectedDate}
+              // FUTURE DISABLE: Aaj se aage ki date nahi select hogi
               max={new Date().toISOString().split('T')[0]} 
               onChange={(e) => setSelectedDate(e.target.value)}
             />
@@ -147,8 +121,8 @@ const TeacherReportsDashboard = () => {
                 )}
 
                 <div className="card-footer-layout">
-                    <div className={`status-pill ${report.Status?.toLowerCase().replace(/\s+/g, '-').replace('+', '-')}`}>{report.Status}</div>
-                    <button className="check-media-btn" onClick={() => handleCheckMedia(report.SchduleId)}>Check Media</button>
+                   <div className={`status-pill ${report.Status?.toLowerCase().replace(/\s+/g, '-').replace('+', '-')}`}>{report.Status}</div>
+                   <button className="check-media-btn" onClick={() => handleCheckMedia(report.SchduleId)}>Check Media</button>
                 </div>
               </div>
             </div>
@@ -166,19 +140,18 @@ const TeacherReportsDashboard = () => {
               <>
                 <h3>Evidence: {selectedDate}</h3>
                 <div className="video-switch">
-                  <button className={activeVideo === "in" ? "active" : ""} onClick={() => toggleVideo("in")}>Entry View</button>
-                  <button className={activeVideo === "out" ? "active" : ""} onClick={() => toggleVideo("out")}>Exit View</button>
+                  <button className={activeVideo === "in" ? "active" : ""} onClick={() => setActiveVideo("in")}>Entry View</button>
+                  <button className={activeVideo === "out" ? "active" : ""} onClick={() => setActiveVideo("out")}>Exit View</button>
                 </div>
 
                 <div className="video-player-wrapper">
-                  {videoUrl ? (
+                  {videoUrls[activeVideo] ? (
                     <video 
-                      key={videoUrl}
+                      key={videoUrls[activeVideo]} // URL change hone par video reset hogi
                       controls 
-                      autoPlay 
                       className="main-video"
                     >
-                      <source src={videoUrl} type="video/mp4" />
+                      <source src={videoUrls[activeVideo]} type="video.mp4" />
                       Your browser does not support the video tag.
                     </video>
                   ) : (

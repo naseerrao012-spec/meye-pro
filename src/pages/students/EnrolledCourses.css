@@ -1,0 +1,84 @@
+/* Premium Grid Layout for Full Screen */
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+.course-card-web {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px !important;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.card-accent-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.course-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.course-id-tag {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.attendance-circle-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.percentage-text {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.course-name-display {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.teacher-info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.progress-ring__bar {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke-linecap: round;
+}
+
+.view-details-btn {
+  margin-top: 20px;
+  padding: 10px !important;
+  font-size: 14px !important;
+}
