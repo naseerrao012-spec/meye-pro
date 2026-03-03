@@ -2,30 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AllocatedCourses.css";
 
-const AllocatedCourses = ({ teacherId }) => {
+const AllocatedCourses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [reportLoading, setReportLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Placeholder teacherId agar props se na aaye (testing ke liye)
-  const id = teacherId || "T-001"; 
+  const userId = localStorage.getItem("userId");
 
   const fetchAllocatedCourses = async () => {
+    if (!userId) {
+      setError("Session expired. Please login again.");
+      setLoading(false);
+      return;
+    }
     try {
       setLoading(true);
-      setError("");
-      const res = await axios.get(`http://localhost:8000/teacher/allocateCourses?teacherId=${id}`);
-      
-      // Agar backend 200 par error detail bhej raha hai
-      if (res.data.detail) {
-        setError(res.data.detail);
-        setCourses([]);
-      } else {
-        setCourses(res.data);
-      }
+      const res = await axios.get(`http://localhost:8000/teacher/allocateCourses`, {
+        params: { teacherId: userId }
+      });
+      setCourses(res.data.detail ? [] : res.data);
     } catch (err) {
-      setError("Failed to load courses. Please try again.");
-      console.error(err);
+      setError("Database connection failed.");
     } finally {
       setLoading(false);
     }
@@ -33,58 +33,152 @@ const AllocatedCourses = ({ teacherId }) => {
 
   useEffect(() => {
     fetchAllocatedCourses();
-  }, [id]);
+  }, [userId]);
+
+  const handleViewAttendance = async (course) => {
+    try {
+      setReportLoading(true);
+      const res = await axios.get(`http://localhost:8000/teacher/getAttendanceReport`, {
+        params: {
+          course_id: course.Course_Id,
+          session: course.Session,
+          semester: course.Semester,
+          section: course.Section
+        }
+      });
+      // API response ke sath hum manual course name bhi bhej rahe hain for display
+      setSelectedReport({ ...res.data, display_name: course.Course_Name });
+    } catch (err) {
+      alert("Error fetching attendance report");
+    } finally {
+      setReportLoading(false);
+    }
+  };
+
+  const filteredStudents = selectedReport?.data?.filter(student =>
+    student.student_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    student.registration_no.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="courses-container">
-      <header className="courses-header">
-        <div className="header-info">
-          <h1>My Allocated Courses</h1>
-          {courses.length > 0 && <span className="session-badge">Session: {courses[0].Session}</span>}
-        </div>
-        <button className="refresh-link" onClick={fetchAllocatedCourses}>🔄 Sync Courses</button>
-      </header>
-
-      {loading ? (
-        <div className="loader-container"><div className="spinner"></div></div>
-      ) : error ? (
-        <div className="empty-state-box">
-          <span className="empty-icon">📚</span>
-          <p>{error}</p>
-        </div>
-      ) : (
-        <div className="courses-grid">
-          {courses.map((course, index) => (
-            <div key={index} className="course-card">
-              <div className="course-card-top">
-                <div className="course-code">{course.Course_Id}</div>
-                <div className="course-tag">Active</div>
-              </div>
-              
-              <h2 className="course-title">{course.Course_Name}</h2>
-              
-              <div className="course-details-grid">
-                <div className="detail-item">
-                  <span className="label">Discipline</span>
-                  <span className="value">{course.Discipline}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="label">Semester</span>
-                  <span className="value">{course.Semester}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="label">Section</span>
-                  <span className="value">{course.Section}</span>
-                </div>
-              </div>
-
-              <div className="course-footer">
-                <button className="view-attendance-btn">View Attendance</button>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className={`premium-dashboard-wrapper ${selectedReport ? "report-open" : ""}`}>
+      {/* Top Navbar: Only shows when no report is selected */}
+      {!selectedReport && (
+        <nav className="top-nav">
+          <div className="nav-brand">M-EYE PRO <span>Teacher Portal</span></div>
+          <div className="user-profile-nav">
+            <span className="user-id">ID: {userId}</span>
+            <div className="avatar-small">{userId?.charAt(0)}</div>
+          </div>
+        </nav>
       )}
+
+      <div className="main-content-area">
+        {!selectedReport ? (
+          /* --- COURSES GRID VIEW --- */
+          <>
+            <header className="page-hero">
+              <div className="hero-text">
+                <h1>My Allocated Courses</h1>
+                <p>Manage your classes and monitor real-time student attendance.</p>
+              </div>
+            </header>
+
+            {loading ? (
+              <div className="premium-loader"><div className="double-ring-spinner"></div></div>
+            ) : (
+              <div className="premium-courses-grid">
+                {courses.map((course, index) => (
+                  <div key={index} className="premium-card-glass">
+                    <div className="card-accent-bar"></div>
+                    <div className="card-body">
+                      <div className="card-top-row">
+                        <span className="code-pill">{course.Course_Id}</span>
+                        <span className="status-dot">Active</span>
+                      </div>
+                      <h2 className="course-main-title">{course.Course_Name}</h2>
+                      <div className="course-stats-container">
+                        <div className="stat-box"><label>Sec</label><span>{course.Section}</span></div>
+                        <div className="stat-box"><label>Sem</label><span>{course.Semester}</span></div>
+                        <div className="stat-box"><label>Disc</label><span>{course.Discipline}</span></div>
+                      </div>
+                    </div>
+                    <div className="card-footer-action">
+                      <button className="action-btn-primary" onClick={() => handleViewAttendance(course)}>
+                        {reportLoading ? "Loading..." : "View Detailed Attendance"}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          /* --- DETAILED REPORT VIEW (Clean Design) --- */
+          <div className="report-screen">
+            <header className="report-screen-header">
+              <div className="header-left">
+                <button className="back-button" onClick={() => setSelectedReport(null)}>
+                  ← Back to Courses
+                </button>
+              </div>
+
+              {/* Course Name replacing "Detailed Report" */}
+              <div className="report-header-meta">
+                <h2>{selectedReport.display_name}</h2>
+                <div className="meta-sub">
+                  <span className="course-id-tag">{selectedReport.course_id}</span>
+                  <span className="total-badge">{selectedReport.total_students} Students Enrolled</span>
+                </div>
+              </div>
+
+              <div className="header-right-search">
+                <div className="search-wrapper-premium">
+                  <span className="search-icon">🔍</span>
+                  <input 
+                    type="text" 
+                    placeholder="Search by name or Arid No..." 
+                    className="premium-input-field"
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+              </div>
+            </header>
+
+            <div className="student-report-list">
+              {filteredStudents?.map((student, index) => {
+                const percentage = parseFloat(student.attendance_percentage) || 0;
+                const circumference = 150.8;
+                const offset = circumference - (percentage / 100) * circumference;
+
+                return (
+                  <div key={index} className="student-list-item">
+                    <div className="item-details">
+                      <span className="arid-no">{student.registration_no}</span>
+                      <h4 className="student-name">{student.student_name}</h4>
+                      <p className="counts">Present: {student.present_count} / {student.classes_held}</p>
+                    </div>
+                    <div className="item-progress">
+                      <div className="circular-progress-box">
+                        <svg width="60" height="60">
+                          <circle className="bg" cx="30" cy="30" r="24" />
+                          <circle 
+                            className="bar" cx="30" cy="30" r="24" 
+                            strokeDasharray={circumference}
+                            strokeDashoffset={offset}
+                            stroke={percentage < 75 ? "#ee5d50" : "#05cd99"}
+                          />
+                        </svg>
+                        <span className="percentage">{student.attendance_percentage}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
