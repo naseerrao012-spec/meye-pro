@@ -9,12 +9,15 @@ const AllocatedCourses = () => {
   const [selectedReport, setSelectedReport] = useState(null);
   const [reportLoading, setReportLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [studentHistory, setStudentHistory] = useState([]);
 
   const userId = localStorage.getItem("userId");
 
   const fetchAllocatedCourses = async () => {
     if (!userId) {
-      setError("Session expired. Please login again.");
+      setError("Session expired.");
       setLoading(false);
       return;
     }
@@ -31,9 +34,7 @@ const AllocatedCourses = () => {
     }
   };
 
-  useEffect(() => {
-    fetchAllocatedCourses();
-  }, [userId]);
+  useEffect(() => { fetchAllocatedCourses(); }, [userId]);
 
   const handleViewAttendance = async (course) => {
     try {
@@ -46,13 +47,19 @@ const AllocatedCourses = () => {
           section: course.Section
         }
       });
-      // API response ke sath hum manual course name bhi bhej rahe hain for display
       setSelectedReport({ ...res.data, display_name: course.Course_Name });
-    } catch (err) {
-      alert("Error fetching attendance report");
-    } finally {
-      setReportLoading(false);
-    }
+    } catch (err) { alert("Error fetching attendance report"); } finally { setReportLoading(false); }
+  };
+
+  const handleStudentClick = async (student) => {
+    try {
+      const res = await axios.get(`http://localhost:8000/student/getCourseAttendance`, {
+        params: { regno: student.registration_no, course_id: selectedReport.course_id }
+      });
+      setStudentHistory(res.data.Attendance || []);
+      setSelectedStudent(student);
+      console.log(student)
+    } catch (err) { alert("Error fetching student history"); }
   };
 
   const filteredStudents = selectedReport?.data?.filter(student =>
@@ -61,29 +68,23 @@ const AllocatedCourses = () => {
   );
 
   return (
-    <div className={`premium-dashboard-wrapper ${selectedReport ? "report-open" : ""}`}>
-      {/* Top Navbar: Only shows when no report is selected */}
-      {!selectedReport && (
-        <nav className="top-nav">
-          <div className="nav-brand">M-EYE PRO <span>Teacher Portal</span></div>
-          <div className="user-profile-nav">
-            <span className="user-id">ID: {userId}</span>
-            <div className="avatar-small">{userId?.charAt(0)}</div>
-          </div>
-        </nav>
-      )}
-
+    <div className="premium-dashboard-wrapper">
       <div className="main-content-area">
+        
+        {/* VIEW 1: COURSES GRID */}
         {!selectedReport ? (
-          /* --- COURSES GRID VIEW --- */
           <>
             <header className="page-hero">
               <div className="hero-text">
                 <h1>My Allocated Courses</h1>
                 <p>Manage your classes and monitor real-time student attendance.</p>
               </div>
+              <div className="teacher-id-badge">
+                <span className="label">Teacher ID</span>
+                <span className="value">{userId}</span>
+              </div>
             </header>
-
+            
             {loading ? (
               <div className="premium-loader"><div className="double-ring-spinner"></div></div>
             ) : (
@@ -113,34 +114,56 @@ const AllocatedCourses = () => {
               </div>
             )}
           </>
-        ) : (
-          /* --- DETAILED REPORT VIEW (Clean Design) --- */
+        ) : selectedStudent ? (
+          /* VIEW 3: STUDENT FULL HISTORY SCREEN */
           <div className="report-screen">
             <header className="report-screen-header">
               <div className="header-left">
-                <button className="back-button" onClick={() => setSelectedReport(null)}>
-                  ← Back to Courses
-                </button>
+                <button className="back-button" onClick={() => setSelectedStudent(null)}>← Back</button>
               </div>
+              <div className="report-header-meta">
+                <h2>{selectedStudent.student_name}</h2>
+                <span className="arid-no-header">{selectedStudent.registration_no}</span>
+              </div>
+              <div className="header-right-search">
+                 <div className="total-classes-badge">Classes: {studentHistory.length}</div>
+              </div>
+            </header>
 
-              {/* Course Name replacing "Detailed Report" */}
+            <div className="student-report-list">
+              {studentHistory.map((item, index) => (
+                <div key={index} className="student-list-item history-item">
+                  <div className="item-details">
+                    <span className="history-date">{item.Date} ({item.Day})</span>
+                    <span className="history-time">{item.Time}</span>
+                  </div>
+                  <div className="item-status">
+                    <span className={`status-pill ${item.Status === 'P' ? 'present' : 'absent'}`}>
+                      {item.Status === 'P' ? 'P' : 'A'}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* VIEW 2: DETAILED REPORT VIEW */
+          <div className="report-screen">
+            <header className="report-screen-header">
+              <div className="header-left">
+                <button className="back-button" onClick={() => setSelectedReport(null)}>← Back</button>
+              </div>
               <div className="report-header-meta">
                 <h2>{selectedReport.display_name}</h2>
                 <div className="meta-sub">
                   <span className="course-id-tag">{selectedReport.course_id}</span>
-                  <span className="total-badge">{selectedReport.total_students} Students Enrolled</span>
+                  <span className="total-badge">{selectedReport.total_students} Students</span>
                 </div>
               </div>
-
               <div className="header-right-search">
                 <div className="search-wrapper-premium">
                   <span className="search-icon">🔍</span>
-                  <input 
-                    type="text" 
-                    placeholder="Search by name or Arid No..." 
-                    className="premium-input-field"
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
+                  <input type="text" placeholder="Search..." className="premium-input-field" onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
               </div>
             </header>
@@ -150,9 +173,8 @@ const AllocatedCourses = () => {
                 const percentage = parseFloat(student.attendance_percentage) || 0;
                 const circumference = 150.8;
                 const offset = circumference - (percentage / 100) * circumference;
-
                 return (
-                  <div key={index} className="student-list-item">
+                  <div key={index} className="student-list-item clickable-item" onClick={() => handleStudentClick(student)}>
                     <div className="item-details">
                       <span className="arid-no">{student.registration_no}</span>
                       <h4 className="student-name">{student.student_name}</h4>
@@ -162,12 +184,9 @@ const AllocatedCourses = () => {
                       <div className="circular-progress-box">
                         <svg width="60" height="60">
                           <circle className="bg" cx="30" cy="30" r="24" />
-                          <circle 
-                            className="bar" cx="30" cy="30" r="24" 
-                            strokeDasharray={circumference}
-                            strokeDashoffset={offset}
-                            stroke={percentage < 75 ? "#ee5d50" : "#05cd99"}
-                          />
+                          <circle className="bar" cx="30" cy="30" r="24" 
+                            strokeDasharray={circumference} strokeDashoffset={offset}
+                            stroke={percentage < 75 ? "#ee5d50" : "#05cd99"} />
                         </svg>
                         <span className="percentage">{student.attendance_percentage}</span>
                       </div>

@@ -235,3 +235,122 @@
   font-weight: 600;
   cursor: pointer;
 }
+/* Existing styles same rahengi... bas ye niche wali add kar dein */
+
+.clickable-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.clickable-item:hover {
+  transform: scale(1.01);
+  background-color: #f8fafc;
+}
+
+/* History Screen Specific Styles */
+.history-date {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.history-time {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.status-pill {
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.status-pill.present {
+  background: #e6fcf5;
+  color: #05cd99;
+}
+
+.status-pill.absent {
+  background: #fff5f5;
+  color: #ee5d50;
+}
+
+.arid-no-header {
+  color: var(--primary);
+  font-weight: 600;
+  display: block;
+}
+
+.total-classes-badge {
+  background: #f1f5f9;
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+/* teacher id ka lya */
+/* Hero Section: Simple White Background */
+.page-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #f1f5f9; /* Sirf niche aik line */
+  margin-bottom: 30px;
+}
+
+.hero-text h1 {
+  font-size: 1.8rem;
+  color: #1e293b; /* Dark Blue-Grey */
+  margin: 0;
+  font-weight: 600;
+}
+
+.hero-text p {
+  color: #64748b; /* Soft Grey */
+  margin-top: 4px;
+  font-size: 1rem;
+}
+
+/* Teacher ID Badge: Clean & Professional */
+.teacher-id-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 15px;
+  background-color: #f8fafc; /* Bohat light grey background */
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  min-width: 150px;
+}
+
+.teacher-id-badge .label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.teacher-id-badge .value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3b82f6; /* Sirf ID ko blue color diya hai highlight ke liye */
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .page-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .teacher-id-badge {
+    align-items: flex-start;
+  }
+}
+/* tch id end */
