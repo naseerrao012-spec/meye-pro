@@ -73,7 +73,7 @@ function VenueDashboard() {
         formData.append("courseName", selectedVenueData.Course);
         formData.append("Discipline", selectedVenueData.Discipline);
         alert("Processing Student Attendance...");
-        await axios.post("http://localhost:8000/markAttendanceByVideo", formData);
+        await axios.post("http://localhost:8000/admin/markAttendanceByVideo", formData);
       } else {
         formData.append("file", file);
         formData.append("venue_id", selectedVenueData.venue_id);

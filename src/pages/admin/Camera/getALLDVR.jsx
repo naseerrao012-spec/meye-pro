@@ -67,7 +67,7 @@ function DVRManagement() {
         <div className="dvr-wrapper">
           <div className="glass-panel">
             <div className="dvr-search-box">
-              <span className="search-icon">🔍</span>
+              {/* <span className="search-icon">🔍</span> */}
               <input
                 type="text"
                 className="search-input"

@@ -285,7 +285,7 @@
 }
 
 .claim-btn:hover { background: #c53030; transform: scale(1.05); }
-/* .date-picker-container {
+.date-picker-container {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -313,7 +313,7 @@
 }
 
 /* Chrome calendar indicator styling */
-/* .premium-date-picker::-webkit-calendar-picker-indicator {
+ .premium-date-picker::-webkit-calendar-picker-indicator {
     cursor: pointer;
     filter: invert(30%) sepia(50%) saturate(500%) hue-rotate(130deg);
 }
@@ -327,4 +327,111 @@
     border: 2px dashed #e2e8f0;
 }
 
-.empty-icon { font-size: 3rem; margin-bottom: 10px; } */ 
+.empty-icon { font-size: 3rem; margin-bottom: 10px; } 
+/* --- Date Picker Styling Fixed --- */
+.date-picker-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f0f7f6;
+  padding: 8px 15px;
+  border-radius: 12px;
+  border: 1px solid #e0e7e9;
+  width: fit-content; /* Size chota karne ke liye */
+}
+
+.picker-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #00796b;
+    text-transform: uppercase;
+}
+
+.custom-date-input {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-weight: 700;
+  color: #2d3748;
+  outline: none;
+  cursor: pointer;
+  width: 140px; /* Perfect width fixed */
+}
+
+.friday-tag {
+  color: #00796b; 
+  font-size: 12px; 
+  font-weight: bold;
+  background: #def7ec;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* --- Video Modal Fixes --- */
+.video-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.video-modal-container {
+  background: white;
+  width: 95%;
+  max-width: 800px;
+  border-radius: 24px;
+  padding: 40px 30px 30px 30px; /* Top padding thori barhai close button ke liye */
+  position: relative;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+  position: absolute;
+  right: 20px; 
+  top: 15px;
+  font-size: 32px;
+  line-height: 1;
+  background: #f1f5f9; 
+  border: none; 
+  color: #64748b;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.video-player-wrapper {
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #f1f5f9;
+}
+
+.main-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ... Baki CSS Purani hi rahegi ... */
