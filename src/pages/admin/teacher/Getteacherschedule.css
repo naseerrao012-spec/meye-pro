@@ -1,0 +1,128 @@
+/* Full Page Wrapper */
+.schedule-page-container {
+  padding: 20px 40px;
+  background-color: #f8fafb;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.schedule-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #edf2f7;
+}
+
+.title-section h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #1a202c;
+}
+
+.current-day {
+  margin: 5px 0 0;
+  color: #718096;
+  font-weight: 500;
+}
+
+.stats-badge {
+  background: #e6fffa;
+  color: #00796b;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  border: 1px solid #b2f5ea;
+}
+
+/* Grid Layout - Stretching to full width */
+.schedule-full-view {
+  width: 100%;
+}
+
+.schedule-grid {
+  display: grid;
+  /* Grid 3 columns tak stretch hoga bade screens par */
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+/* Premium Card Design based on your Mobile Screenshot but for Web */
+.lecture-card-web {
+  background: #ffffff;
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+  border: 1px solid #edf2f7;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lecture-card-web:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.card-sidebar {
+  width: 8px;
+  background: #00796b; /* Green accent from your screenshot */
+}
+
+.card-main-content {
+  padding: 25px;
+  width: 100%;
+}
+
+.course-name {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #2d3748;
+  font-weight: 800;
+}
+
+.discipline-tag {
+  color: #718096;
+  margin: 8px 0 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.lecture-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-item .icon {
+  font-size: 1.1rem;
+}
+
+.info-item .text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+/* No Data & Loader */
+.no-schedule, .schedule-loader {
+  text-align: center;
+  padding: 100px;
+  font-size: 1.2rem;
+  color: #a0aec0;
+  background: white;
+  border-radius: 20px;
+}
