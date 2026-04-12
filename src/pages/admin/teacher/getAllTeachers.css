@@ -338,3 +338,63 @@
     .modal-main-content { flex-direction: column; }
     .modal-profile-section { border-right: none; padding-right: 0; margin-bottom: 30px; }
 }
+
+/* Header Right Layout */
+.faculty-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 20px;
+}
+
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* Bell aur Search ke darmiyan space */
+}
+
+/* 🔔 Notification Wrapper */
+.notification-bell-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.notification-bell-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.admin-bell-icon {
+  color: #444;
+}
+
+/* 🔴 Notification Badge (The Dot) */
+.notif-badge-dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4d4f; /* Alert Red */
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white; /* Background se alag dikhane ke liye */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Search bar wrapper adjustment */
+.faculty-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

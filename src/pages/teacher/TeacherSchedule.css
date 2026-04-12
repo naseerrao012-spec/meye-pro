@@ -126,3 +126,57 @@
   background: white;
   border-radius: 20px;
 }
+.schedule-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Notification Wrapper */
+.notification-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.notification-wrapper:hover {
+  background: #f0f2f5;
+}
+
+.bell-icon {
+  color: #333;
+}
+
+/* Red Dot / Badge */
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff4d4f; /* Alert Red */
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white; /* Dot ko icon se alag dikhane ke liye */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

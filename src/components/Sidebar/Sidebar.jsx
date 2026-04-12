@@ -39,15 +39,16 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
           <>
             <div className="nav-section-label admin-label">ADMINISTRATION</div>
             {/* NEW VENUE MONITORING LINK */}
+            <Link to="/getAllTeachers" onClick={onClose} className={`nav-item ${path === '/getAllTeachers' ? 'active' : ''}`}>
+              <span className="nav-icon">👥</span> ALL TEACHERS
+            </Link>
             <Link to="/venue-dashboard" onClick={onClose} className={`nav-item ${path === '/venue-dashboard' ? 'active' : ''}`}>
               <span className="nav-icon">🏛️</span> VENUE MONITORING
             </Link>
             <Link to="/add-teacher" onClick={onClose} className={`nav-item ${path === '/add-teacher' ? 'active' : ''}`}>
               <span className="nav-icon">👨‍🏫</span> ADD TEACHER
             </Link>
-            <Link to="/getAllTeachers" onClick={onClose} className={`nav-item ${path === '/getAllTeachers' ? 'active' : ''}`}>
-              <span className="nav-icon">👥</span> ALL TEACHERS
-            </Link>
+            
             <Link to="/dvr-management" onClick={onClose} className={`nav-item ${path === '/dvr-management' ? 'active' : ''}`}>
               <span className="nav-icon">📹</span> DVR MANAGEMENT
             </Link>
