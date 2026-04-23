@@ -155,10 +155,10 @@ function VenueDashboard() {
                     <span className="discipline-tag">{venue.Discipline}</span>
                   </div>
                 </div>
-                {/* <div className="card-actions-premium">
+                <div className="card-actions-premium">
                   <button className="cam-btn front-btn" onClick={() => onCamClick(venue, true)}>📷 Front</button>
                   <button className="cam-btn back-btn" onClick={() => onCamClick(venue, false)}>📸 Back</button>
-                </div> */}
+                </div>
               </div>
             ))}
           </div>

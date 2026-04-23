@@ -40,6 +40,9 @@ const handleLoginSubmit = async (e) => {
       } else if (userRole === 'director') {
         redirectPath = '/director-dashboard'; // aagar ye route ho
       }
+      else if (userRole === 'student') {
+        redirectPath = '/enrolled-courses'; // aagar ye route ho
+      }
 
       console.log(`Login Successful! Role: ${userRole} - Redirecting to ${redirectPath}`);
       navigate(redirectPath);

@@ -75,7 +75,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
           </>
         )}
         {/* STUDENT SECTION - Naya section Enrolled Courses ke liye */}
-        {userRole === 'student' && (
+        {userRole?.toLowerCase() === 'student' && (
           <>
             <div className="nav-section-label">STUDENT PANEL</div>
             <Link to="/enrolled-courses" onClick={onClose} className={`nav-item ${path === '/enrolled-courses' ? 'active' : ''}`}>

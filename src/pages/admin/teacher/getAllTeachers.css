@@ -1,3 +1,4 @@
+/* --- 1. VARIABLES & RESET --- */
 :root {
   --primary: #0066ff;
   --primary-hover: #0052cc;
@@ -6,9 +7,10 @@
   --text-secondary: #64748b;
   --white: #ffffff;
   --border: #e2e8f0;
+  --danger: #ef4444;
 }
 
-/* Full Screen Layout */
+/* --- 2. MAIN LAYOUT --- */
 .faculty-dashboard-stage {
   min-height: 100vh;
   background-color: var(--bg-main);
@@ -19,16 +21,18 @@
 
 .faculty-container {
   width: 100%;
-  max-width: 1600px; /* Big screen coverage */
+  max-width: 1600px;
   display: flex;
   flex-direction: column;
 }
 
-/* Header UI */
+/* --- 3. HEADER & TOP ACTIONS --- */
 .faculty-header-section {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 2px solid #f0f0f0;
   margin-bottom: 40px;
   gap: 20px;
   flex-wrap: wrap;
@@ -48,7 +52,13 @@
   margin-top: 5px;
 }
 
-/* Search Bar - Scalable */
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Search Bar */
 .faculty-search-wrapper {
   display: flex;
   align-items: center;
@@ -70,10 +80,8 @@
 .faculty-search:focus-within {
   border-color: var(--primary);
   box-shadow: 0 4px 20px rgba(0, 102, 255, 0.1);
-  width: 400px; /* Expands on focus */
+  width: 400px;
 }
-
-/* .search-icon { margin-right: 10px; font-size: 18px; } */
 
 .faculty-search input {
   border: none;
@@ -90,272 +98,10 @@
   padding: 12px 20px;
   border-radius: 12px;
   font-size: 14px;
+  font-weight: bold;
 }
 
-/* GRID SYSTEM - Full Width Responsive */
-.faculty-grid {
-  display: grid;
-  /* Auto-fit screens: 4 cards on desktop, 3 on tablets, etc. */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-  width: 100%;
-}
-
-/* Premium Card Design */
-.faculty-card-premium {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 25px;
-  border: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-}
-
-.faculty-card-premium:hover {
-  transform: translateY(-10px);
-  border-color: var(--primary);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-}
-
-.card-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-/* Profile Image UI */
-.image-holder {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.image-holder img {
-  width: 100px;
-  height: 100px;
-  border-radius: 30px; /* Modern squircle */
-  object-fit: cover;
-  border: 4px solid #f1f5f9;
-}
-
-
-
-/* Text Info */
-.staff-name {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 5px;
-}
-
-.staff-dept {
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-/* Button */
-.view-profile-btn {
-  background: #f1f5f9;
-  color: var(--text-dark);
-  border: none;
-  padding: 10px 25px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.faculty-card-premium:hover .view-profile-btn {
-  background: var(--primary);
-  color: white;
-}
-
-/* Scaling Support */
-@media (max-width: 768px) {
-  .faculty-dashboard-stage { padding: 20px; }
-  .faculty-header-section { flex-direction: column; align-items: flex-start; }
-  .faculty-search { width: 100%; }
-}
-/* --- POPUP OVERLAY --- */
-.faculty-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15, 23, 42, 0.85); /* Darker backdrop */
-    backdrop-filter: blur(12px); /* Premium Blur */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-/* --- POPUP CARD --- */
-.faculty-modal-card {
-    background: white;
-    width: 90%;
-    max-width: 850px;
-    border-radius: 32px;
-    padding: 50px;
-    position: relative;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-    animation: modalPopUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes modalPopUp {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Close Icon (Corner) */
-.modal-close-icon {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 45px;
-    height: 45px;
-    background: #f1f5f9;
-    border: none;
-    border-radius: 50%;
-    font-size: 30px;
-    color: #64748b;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-.modal-close-icon:hover {
-    background: #ef4444;
-    color: white;
-    transform: rotate(90deg);
-}
-
-/* Layout Content */
-.modal-main-content {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-}
-
-.modal-profile-section {
-    text-align: center;
-    flex: 0.4;
-    border-right: 1px solid #e2e8f0;
-    padding-right: 40px;
-}
-
-.modal-profile-section img {
-    width: 180px;
-    height: 180px;
-    border-radius: 40px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 5px solid #f8fafc;
-}
-
-.modal-teacher-name {
-    font-size: 26px;
-    color: #0f172a;
-    margin-bottom: 8px;
-    font-weight: 800;
-}
-
-.modal-tag {
-    font-size: 14px;
-    font-weight: 700;
-    color: #0066ff;
-    background: #e6f0ff;
-    padding: 5px 15px;
-    border-radius: 50px;
-}
-
-/* Options Area */
-.modal-options-section {
-    flex: 0.6;
-}
-
-.options-title {
-    font-size: 20px;
-    color: #1e293b;
-    margin-bottom: 25px;
-    font-weight: 700;
-}
-
-.options-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Option Buttons Styling */
-.option-btn {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 18px 25px;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    background: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-    text-align: left;
-}
-
-.option-btn:hover {
-    transform: translateX(10px);
-    border-color: #0066ff;
-    background: #f0f7ff;
-}
-
-.opt-icon { font-size: 24px; }
-
-.opt-text strong {
-    display: block;
-    font-size: 16px;
-    color: #1e293b;
-}
-
-.opt-text p {
-    font-size: 13px;
-    color: #64748b;
-    margin: 0;
-}
-
-/* Hover specific colors for icons */
-.option-btn.recording:hover .opt-icon { filter: drop-shadow(0 0 5px red); }
-.option-btn.schedule:hover .opt-icon { filter: drop-shadow(0 0 5px blue); }
-.option-btn.chr:hover .opt-icon { filter: drop-shadow(0 0 5px green); }
-
-/* Responsive */
-@media (max-width: 750px) {
-    .modal-main-content { flex-direction: column; }
-    .modal-profile-section { border-right: none; padding-right: 0; margin-bottom: 30px; }
-}
-
-/* Header Right Layout */
-.faculty-header-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  border-bottom: 2px solid #f0f0f0;
-  margin-bottom: 20px;
-}
-
-.header-right-actions {
-  display: flex;
-  align-items: center;
-  gap: 25px; /* Bell aur Search ke darmiyan space */
-}
-
-/* 🔔 Notification Wrapper */
+/* Notification Bell Icon */
 .notification-bell-wrapper {
   position: relative;
   cursor: pointer;
@@ -373,12 +119,11 @@
   color: #444;
 }
 
-/* 🔴 Notification Badge (The Dot) */
 .notif-badge-dot {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: #ff4d4f; /* Alert Red */
+  background-color: #ff4d4f;
   color: white;
   font-size: 10px;
   font-weight: bold;
@@ -388,13 +133,632 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white; /* Background se alag dikhane ke liye */
+  border: 2px solid white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Search bar wrapper adjustment */
-.faculty-search-wrapper {
+/* --- 4. FACULTY GRID & CARDS --- */
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+.faculty-card-premium {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 25px;
+  border: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.faculty-card-premium:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image-holder {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.image-holder img {
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+  object-fit: cover;
+  border: 4px solid #f1f5f9;
+}
+
+.staff-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.staff-dept {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.view-profile-btn {
+  background: #f1f5f9;
+  color: var(--text-dark);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.faculty-card-premium:hover .view-profile-btn {
+  background: var(--primary);
+  color: white;
+}
+
+/* --- 5. NOTIFICATION SIDEBAR --- */
+.notif-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.notif-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  padding: 25px;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.close-sidebar {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-sidebar:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(90deg);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #fdfdfd;
+}
+
+/* Claim Card Inside Sidebar */
+.claim-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #edf2f7;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s;
+}
+
+.claim-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 15px rgba(0, 102, 255, 0.08);
+}
+
+.claim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 8px;
+}
+
+.claim-header strong {
+  color: var(--text-dark);
+  font-size: 15px;
+}
+
+.claim-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.claim-body p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+}
+
+.time-info {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.time-info b {
+  color: var(--primary);
+}
+
+.claim-actions {
+  margin-top: 15px;
+}
+
+.claim-actions button {
+  width: 100%;
+  background: #f0f7ff;
+  color: var(--primary);
+  border: 1px solid #cce0ff;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.claim-actions button:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.no-notif {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* --- 6. FACULTY PROFILE MODAL --- */
+.faculty-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.faculty-modal-card {
+  background: white;
+  width: 90%;
+  max-width: 850px;
+  border-radius: 32px;
+  padding: 50px;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  animation: modalPopUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPopUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close-icon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.modal-close-icon:hover {
+  background: var(--danger);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-main-content {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.modal-profile-section {
+  text-align: center;
+  flex: 0.4;
+  border-right: 1px solid #e2e8f0;
+  padding-right: 40px;
+}
+
+.modal-profile-section img {
+  width: 180px;
+  height: 180px;
+  border-radius: 40px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 5px solid #f8fafc;
+}
+
+.modal-teacher-name {
+  font-size: 26px;
+  color: #0f172a;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.modal-tag {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  background: #e6f0ff;
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+
+.modal-options-section {
+  flex: 0.6;
+}
+
+.options-title {
+  font-size: 20px;
+  color: #1e293b;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 25px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: left;
+}
+
+.option-btn:hover {
+  transform: translateX(10px);
+  border-color: var(--primary);
+  background: #f0f7ff;
+}
+
+.opt-icon { font-size: 24px; }
+
+.opt-text strong {
+  display: block;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.opt-text p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* --- 7. MEDIA COMPARISON MODAL --- */
+.media-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 11000;
+  backdrop-filter: blur(8px);
+}
+
+.media-modal-card {
+  background: #1e293b;
+  width: 90%;
+  max-width: 1000px;
+  border-radius: 24px;
+  padding: 30px;
+  color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.media-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 15px;
+}
+
+.media-modal-header h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.close-media {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-media:hover {
+  background: var(--danger);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.media-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.media-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.media-box video {
+  width: 100%;
+  border-radius: 12px;
+  background: black;
+  border: 2px solid #334155;
+}
+
+.media-box p {
+  font-size: 13px;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* --- 8. RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+  .faculty-dashboard-stage { padding: 20px; }
+  .faculty-header-section { flex-direction: column; align-items: flex-start; }
+  .faculty-search { width: 100%; }
+  .faculty-search:focus-within { width: 100%; }
+  .media-grid { grid-template-columns: 1fr; }
+  .notif-sidebar { width: 100%; right: -100%; }
+}
+
+@media (max-width: 750px) {
+  .modal-main-content { flex-direction: column; }
+  .modal-profile-section { border-right: none; padding-right: 0; margin-bottom: 30px; }
+}
+/* Media Modal Adjustments */
+.media-modal-card {
+    max-height: 90vh; /* Screen se bahar nahi jayega */
+    display: flex;
+    flex-direction: column;
+}
+
+.media-scroll-area {
+    flex: 1;
+    overflow-y: auto; /* Agar video bari ho tu andar scroll bar aa jaye */
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+/* Verification Footer */
+.media-verification-actions {
+    display: flex;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.verify-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.verify-btn.accept {
+    background: #22c55e;
+    color: white;
+}
+
+.verify-btn.accept:hover {
+    background: #16a34a;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.verify-btn.reject {
+    background: #ef4444;
+    color: white;
+}
+
+.verify-btn.reject:hover {
+    background: #dc2626;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Scrollbar styling for Dark Modal */
+.media-scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+.media-scroll-area::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+
+
+/* Media Modal Card ko poori screen par fit karne ke liye */
+.media-modal-card {
+    max-width: 800px;
+    max-height: 95vh; /* 95% of viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scroll area ko optimize karein */
+.media-scroll-area {
+    overflow-y: hidden; /* Scroll khatam karne ke liye */
+    padding: 10px;
+}
+
+/* Dono videos ko side-by-side aur chota karne ke liye */
+.media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.media-box {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* 🎥 Video Player Size Control */
+.media-box video {
+    width: 100%;
+    max-height: 180px; /* Isse video choti ho jayegi */
+    border-radius: 6px;
+    background: #000;
+    aspect-ratio: 16 / 9; /* Aspect ratio maintain rahega */
+    object-fit: contain;
+}
+
+.media-label {
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.media-box p {
+    font-size: 11px;
+    margin-top: 5px;
+    color: #666;
+}
+
+/* Verification Buttons Section */
+.media-verification-actions {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.media-modal-card {
+  max-height: 85vh; /* Screen ke andar rahega */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.media-scroll-area {
+  flex: 1;
+  overflow-y: auto; /* Video area scrollable ho jayegi agar screen chhoti hai */
+  padding: 10px;
+}
+
+.media-verification-actions {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: #1e293b;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
