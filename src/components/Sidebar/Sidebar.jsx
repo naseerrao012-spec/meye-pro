@@ -50,7 +50,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             </Link>
             
             <Link to="/dvr-management" onClick={onClose} className={`nav-item ${path === '/dvr-management' ? 'active' : ''}`}>
-              <span className="nav-icon">📹</span> DVR MANAGEMENT
+              <span className="nav-icon">📹</span> NVR MANAGEMENT
             </Link>
             <Link to="/upload" onClick={onClose} className={`nav-item ${path === '/upload-timetable' ? 'active' : ''}`}>
               <span className="nav-icon">📅</span> UPLOAD TIMETABLE
@@ -64,7 +64,6 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             <Link to="/teacher-schedule" onClick={onClose} className={`nav-item ${path === '/teacher-schedule' ? 'active' : ''}`}>
             <span className="nav-icon">📅</span> TODAY SCHEDULE
             </Link>
-            
             <Link to="/teacher-reports" onClick={onClose} className={`nav-item ${path === '/teacher-reports' ? 'active' : ''}`}>
             <span className="nav-icon">📊</span> Teacher CHR/CAR REPORTS
             </Link>
@@ -72,6 +71,10 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             <Link to="/Allocate_courses" onClick={onClose} className={`nav-item ${path === '/Allocate_courses' ? 'active' : ''}`}>
             <span className="nav-icon">📚</span> Allocated Courses
             </Link>
+            <Link to="/Schedule-Changes" onClick={onClose} className={`nav-item ${path === '/Schedule-Changes' ? 'active' : ''}`}>
+            <span className="nav-icon">📅</span> Schedule Changes
+            </Link>
+            
           </>
         )}
         {/* STUDENT SECTION - Naya section Enrolled Courses ke liye */}

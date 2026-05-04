@@ -108,7 +108,7 @@ function DVRDetails() {
               </div>
             ))
           ) : (
-            <p className="dvr-status">No cameras linked to this DVR.</p>
+            <p className="dvr-status">No cameras linked to this NVR.</p>
           )}
         </div>
 

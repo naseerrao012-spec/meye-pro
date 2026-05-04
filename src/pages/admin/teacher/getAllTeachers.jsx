@@ -503,18 +503,18 @@ function FacultyList() {
                   alt={selectedFaculty.name} 
                 />
                 <h2 className="modal-teacher-name">{selectedFaculty.name}</h2>
-                <span className="modal-tag">Verified Faculty</span>
+                
               </div>
               <div className="modal-options-section">
                 <h3 className="options-title">Management Options</h3>
                 <div className="options-grid">
                   <button className="option-btn" onClick={() => navigate("/view-recordings", { state: { teacherId: selectedFaculty.User_ID } })}>
                     <div className="opt-icon">🎥</div>
-                    <div className="opt-text"><strong>View Recording</strong><p>Review class sessions</p></div>
+                    <div className="opt-text"><strong>View Reports</strong></div>
                   </button>
                   <button className="option-btn" onClick={() => navigate("/Get_teacher_schedule", { state: { teacherId: selectedFaculty.User_ID } })}>
                     <div className="opt-icon">📅</div>
-                    <div className="opt-text"><strong>View Schedule</strong><p>Check timetable</p></div>
+                    <div className="opt-text"><strong>View Schedule</strong></div>
                   </button>
                 </div>
               </div>

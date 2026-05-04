@@ -78,6 +78,8 @@ import AllocatedCourses from './pages/teacher/AllocatedCourses';
 
 // 🔹 Yahan Alias use kiya hai (AdminTeacherSchedule) conflict khatam karne ke liye
 import AdminTeacherSchedule from "./pages/admin/teacher/Getteacherschedule"; 
+import ScheduleChanges from './pages/teacher/ScheduleChanges';
+
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -113,7 +115,9 @@ function App() {
       
           {/* 🔹 Ye Admin wala view hai jahan ID pass ho rahi hai */}
           <Route path="/Get_teacher_schedule" element={<AdminTeacherSchedule />} />
-          
+          <Route path="/Schedule-Changes" element={<ScheduleChanges/>}/>
+
+
         </Route>
       </Routes>
     </Router>

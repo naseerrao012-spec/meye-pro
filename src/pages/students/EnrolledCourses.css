@@ -106,7 +106,7 @@
 }
 
 .course-title-box {
-  background: #10b981; /* Green header like image */
+  background: #6366f1; /* Green header like image */
   padding: 20px;
   border-radius: 15px;
   color: white;
@@ -162,7 +162,7 @@
 }
 
 .status-badge.present {
-  color: #10b981; /* Green P */
+  color: #6366f1; /* Green P */
 }
 
 .status-badge.absent {
@@ -181,8 +181,8 @@
   align-items: center;
   gap: 6px;
   background: #f0fdf4;
-  border: 1px solid #10b981;
-  color: #065f46;
+  border: 1px solid #6366f1;
+  color: #3817dd;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -191,6 +191,80 @@
 }
 
 .evidence-btn:hover {
-  background: #10b981;
+  background:#6366f1;
   color: white;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.premium-modal {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-body {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  background: #000; /* Dark background for video */
+}
+
+.evidence-video {
+  width: 100%;
+  border-radius: 8px;
+  max-height: 400px;
+}
+
+.modal-footer {
+  padding: 16px;
+  text-align: center;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.claim-btn-modal {
+  background: var(--primary);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.claim-btn-modal:hover {
+  filter: brightness(1.1);
+}
+
+.claim-success-msg {
+  color: #6366f1;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }

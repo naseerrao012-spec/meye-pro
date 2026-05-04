@@ -180,3 +180,151 @@
   border: 2px solid white; /* Dot ko icon se alag dikhane ke liye */
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
+/* Sidebar Styles */
+.notification-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  background: #0056b3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-content {
+  padding: 15px;
+  overflow-y: auto;
+  background: #f4f7f6;
+  flex-grow: 1;
+}
+
+/* Claim Card Blue Style */
+.claim-card-blue {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 5px solid #0056b3;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.claim-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.student-name { font-weight: 700; color: #333; display: flex; align-items: center; gap: 5px; }
+
+.claim-body p {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-badge-pending {
+  background: #fff4e5;
+  color: #b7791f;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.check-media-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  background: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+/* Modal Styles */
+.media-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media-modal-card {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.media-modal-header {
+  padding: 15px;
+  background: #0056b3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.video-box {
+  background: #000;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-video { width: 100%; max-height: 400px; }
+
+.media-modal-footer {
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.modal-btn.accept { background: #10b981; color: white; }
+.modal-btn.reject { background: #ef4444; color: white; }

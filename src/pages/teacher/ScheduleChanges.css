@@ -1,0 +1,264 @@
+:root {
+    --primary-blue: #0066ff;
+    --primary-blue-light: #e6f0ff;
+    --danger-red: #ff4d4d;
+    --danger-red-light: #fff0f0;
+    --text-dark: #1a1a1a;
+    --text-gray: #757575;
+    --white: #ffffff;
+    --bg-gray: #f8f9fa;
+    --black-pop: #1c1c1e;
+    --modal-bg: #2c2c2e;
+}
+
+.schedule-container {
+    background-color: var(--bg-gray);
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.schedule-header {
+    background: linear-gradient(135deg, var(--primary-blue), #0052cc);
+    padding: 40px 20px 60px 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schedule-header h1 {
+    color: var(--white);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.date-picker-wrapper {
+    background-color: var(--white);
+    padding: 8px 15px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.day-name {
+    font-size: 11px;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.full-date {
+    font-size: 13px;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.calendar-icon-btn {
+    background-color: var(--primary-blue-light);
+    color: var(--primary-blue);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.schedule-list {
+    padding: 0 20px;
+    margin-top: -30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.schedule-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.schedule-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20px;
+    bottom: 20px;
+    width: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.border-red::before { background-color: var(--danger-red); }
+.border-blue::before { background-color: var(--primary-blue); }
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.course-info h3 {
+    font-size: 17px;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin: 0;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-red { background-color: var(--danger-red-light); color: var(--danger-red); }
+.badge-blue { background-color: var(--primary-blue-light); color: var(--primary-blue); }
+
+.dot { width: 6px; height: 6px; border-radius: 50%; }
+.badge-red .dot { background-color: var(--danger-red); }
+.badge-blue .dot { background-color: var(--primary-blue); }
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dark);
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.btn-reschedule {
+    background-color: var(--danger-red);
+    color: var(--white);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-action {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.popover-wrapper { position: relative; }
+.action-menu {
+    position: absolute;
+    bottom: 110%;
+    right: 0;
+    background-color: var(--black-pop);
+    border-radius: 12px;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.action-menu button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.date-picker-modal {
+    background: white;
+    width: 90%;
+    max-width: 350px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.modal-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.styled-date-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--primary-blue-light);
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.confirm-btn {
+    width: 100%;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.success-modal {
+    background-color: var(--modal-bg);
+    width: 85%;
+    max-width: 320px;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+}
+
+.success-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px; }
+.success-details { display: flex; flex-direction: column; gap: 10px; text-align: left; margin: 20px 0; }
+.detail-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.modal-ok-btn { background: none; border: none; color: #a288e3; font-weight: 700; width: 100%; text-align: right; cursor: pointer; }
+.loader-box { display: flex; justify-content: center; padding: 40px; }
+.spinner { width: 30px; height: 30px; border: 3px solid var(--primary-blue-light); border-top: 3px solid var(--primary-blue); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

@@ -5,7 +5,9 @@
   right: 40px;
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, #0066ff, #00d2ff); /* Premium Blue Gradient */
+  background: linear-gradient(135deg, #0066ff, #00d2ff); 
+  
+  /* Premium Blue Gradient */
   color: white;
   border: none;
   border-radius: 18px;
@@ -231,3 +233,102 @@
 }
 
 
+
+
+/* Card Container Layout */
+.dvr-card {
+  display: flex;
+  justify-content: space-between; /* Arrow ko right side push karne ke liye */
+  align-items: center;
+  background: #ffffff;
+  padding: 16px 20px;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f1f5f9;
+}
+
+.dvr-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #0066ff;
+}
+
+/* Left side grouping (Icon + Details) */
+.dvr-card-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.dvr-icon-box {
+  font-size: 26px;
+  background: #f8fafc;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.dvr-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.dvr-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.dvr-mac {
+  margin: 2px 0 0 0;
+  font-size: 14px;
+  color: #64748b;
+  font-family: 'Courier New', Courier, monospace; /* MAC address look */
+}
+
+/* Right side Arrow styling */
+.dvr-card-right {
+  display: flex;
+  align-items: center;
+}
+
+.dvr-arrow {
+  font-size: 22px;
+  color: #cbd5e1;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.dvr-card:hover .dvr-arrow {
+  color: #0066ff;
+  transform: translateX(5px); /* Arrow thora move karega hover par */
+}
+
+/* Modal and FAB styles remain same or use the premium ones provided previously */
+.fab-add-dvr {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  background: #0066ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 20px;
+}
