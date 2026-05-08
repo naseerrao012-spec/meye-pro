@@ -81,6 +81,9 @@ import AdminTeacherSchedule from "./pages/admin/teacher/Getteacherschedule";
 import ScheduleChanges from './pages/teacher/ScheduleChanges';
 
 
+import AllTeacher from './pages/director/AllTeacher';
+
+
 // Layout
 import MainLayout from './layouts/MainLayout';
 
@@ -116,6 +119,8 @@ function App() {
           {/* 🔹 Ye Admin wala view hai jahan ID pass ho rahi hai */}
           <Route path="/Get_teacher_schedule" element={<AdminTeacherSchedule />} />
           <Route path="/Schedule-Changes" element={<ScheduleChanges/>}/>
+
+          <Route path="/AllTeacher" element={<AllTeacher/>}/>
 
 
         </Route>

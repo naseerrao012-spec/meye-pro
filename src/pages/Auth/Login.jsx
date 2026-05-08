@@ -39,7 +39,7 @@ const Login = () => {
         } else if (userRole === 'teacher') {
           redirectPath = '/teacher-schedule';
         } else if (userRole === 'director') {
-          redirectPath = '/director-dashboard';
+          redirectPath = '/AllTeacher';
         } else if (userRole === 'student') {
           redirectPath = '/enrolled-courses';
         }

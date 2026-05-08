@@ -87,6 +87,16 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
           </>
         )}
 
+        {/* driector side */}
+        {userRole?.toLowerCase() === 'director' && (
+          <>
+            <div className="nav-section-label">Director PANEL</div>
+            <Link to="/AllTeacher" onClick={onClose} className={`nav-item ${path === '/AllTeacher' ? 'active' : ''}`}>
+              <span className="nav-icon">📚</span> All Teacher
+            </Link>
+          </>
+        )}
+
         <div className="sidebar-bottom-action">
           <Link to="/Login" onClick={onClose} className="logout-btn">
             <span className="nav-icon">🚪</span> LOGOUT

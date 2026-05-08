@@ -51,17 +51,8 @@
     text-align: right;
 }
 
-.day-name {
-    font-size: 11px;
-    color: var(--primary-blue);
-    font-weight: 600;
-}
-
-.full-date {
-    font-size: 13px;
-    color: var(--text-dark);
-    font-weight: 700;
-}
+.day-name { font-size: 11px; color: var(--primary-blue); font-weight: 600; }
+.full-date { font-size: 13px; color: var(--text-dark); font-weight: 700; }
 
 .calendar-icon-btn {
     background-color: var(--primary-blue-light);
@@ -100,76 +91,20 @@
 .border-red::before { background-color: var(--danger-red); }
 .border-blue::before { background-color: var(--primary-blue); }
 
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 15px;
-}
-
-.course-info h3 {
-    font-size: 17px;
-    color: var(--text-dark);
-    font-weight: 700;
-    margin: 0;
-}
-
-.status-badge {
-    padding: 5px 10px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.course-info h3 { font-size: 17px; color: var(--text-dark); font-weight: 700; margin: 0; }
+.status-badge { padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
 .badge-red { background-color: var(--danger-red-light); color: var(--danger-red); }
 .badge-blue { background-color: var(--primary-blue-light); color: var(--primary-blue); }
-
 .dot { width: 6px; height: 6px; border-radius: 50%; }
 .badge-red .dot { background-color: var(--danger-red); }
 .badge-blue .dot { background-color: var(--primary-blue); }
 
-.card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 15px;
-}
+.card-bottom { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #f0f0f0; padding-top: 15px; }
+.info-row { display: flex; align-items: center; gap: 8px; color: var(--text-dark); font-size: 13px; margin-bottom: 5px; }
 
-.info-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-dark);
-    font-size: 13px;
-    margin-bottom: 5px;
-}
-
-.btn-reschedule {
-    background-color: var(--danger-red);
-    color: var(--white);
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.btn-action {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-}
+.btn-reschedule { background-color: var(--danger-red); color: var(--white); border: none; padding: 8px 18px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+.btn-action { background-color: var(--primary-blue); color: var(--white); border: none; padding: 8px 18px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 5px; cursor: pointer; }
 
 .popover-wrapper { position: relative; }
 .action-menu {
@@ -195,70 +130,52 @@
     cursor: pointer;
     border-bottom: 1px solid #333;
 }
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+.no-data {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.date-picker-modal {
-    background: white;
-    width: 90%;
-    max-width: 350px;
-    border-radius: 20px;
-    padding: 20px;
-}
-
-.modal-header-simple {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.styled-date-input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid var(--primary-blue-light);
-    border-radius: 10px;
-    font-size: 16px;
-    outline: none;
-}
-
-.confirm-btn {
-    width: 100%;
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 20px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.success-modal {
-    background-color: var(--modal-bg);
-    width: 85%;
-    max-width: 320px;
-    border-radius: 25px;
-    padding: 25px;
     text-align: center;
-    color: white;
+    min-height: 400px; /* Is se ye header se kaafi neeche mid mein nazar ayega */
+    width: 100%;
+    color: var(--text-gray);
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-top: 20px;
 }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.date-picker-modal { background: white; width: 90%; max-width: 350px; border-radius: 20px; padding: 20px; }
+.modal-header-simple { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.styled-date-input { width: 100%; padding: 12px; border: 2px solid var(--primary-blue-light); border-radius: 10px; font-size: 16px; outline: none; }
+.confirm-btn { width: 100%; background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 10px; margin-top: 20px; font-weight: 700; cursor: pointer; }
 
+.success-modal { background-color: var(--modal-bg); width: 85%; max-width: 360px; border-radius: 25px; padding: 25px; text-align: center; color: white; }
 .success-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px; }
 .success-details { display: flex; flex-direction: column; gap: 10px; text-align: left; margin: 20px 0; }
 .detail-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
 .modal-ok-btn { background: none; border: none; color: #a288e3; font-weight: 700; width: 100%; text-align: right; cursor: pointer; }
+
+.teacher-label { font-size: 14px; font-weight: 600; color: #ccc; margin-bottom: 4px; }
+.swap-result-block { border-left: 3px solid var(--primary-blue); padding-left: 12px; }
+
+.swap-view-container { background-color: var(--bg-gray); min-height: 100vh; }
+.swap-header { background: linear-gradient(135deg, var(--primary-blue), #0052cc); padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
+.swap-header h1 { color: white; font-size: 18px; font-weight: 600; margin: 0; }
+.back-btn { background: none; border: none; cursor: pointer; padding: 0; }
+.swap-content { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+.swap-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.teacher-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.avatar-wrapper { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; background: #eee; border: 2px solid var(--primary-blue-light); }
+.avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.placeholder-avatar { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #999; }
+.teacher-text h2 { font-size: 19px; color: #333; margin: 0; }
+.course-accent { color: var(--primary-blue); font-weight: 700; margin: 0; font-size: 13px; }
+.swap-divider { height: 1px; background: #f0f0f0; margin: 15px 0; }
+.swap-details p { margin: 6px 0; color: #555; font-size: 14px; }
+.process-swap-btn { width: 100%; background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 12px; font-size: 16px; font-weight: 700; margin-top: 15px; cursor: pointer; transition: 0.3s; }
+.process-swap-btn:hover { background: #0052cc; }
+
 .loader-box { display: flex; justify-content: center; padding: 40px; }
 .spinner { width: 30px; height: 30px; border: 3px solid var(--primary-blue-light); border-top: 3px solid var(--primary-blue); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

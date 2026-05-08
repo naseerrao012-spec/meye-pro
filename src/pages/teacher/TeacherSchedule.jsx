@@ -110,9 +110,10 @@ const TeacherSchedule = () => {
               <div className="video-box">
                 {activeNotif.video_path ? (
                   <video key={activeNotif.video_path} controls autoPlay className="main-video">
-                    <source src={`${base_url}/${activeNotif.video_path}`} type="video/mp4" />
+                   <source src={`${base_url}/CapturedFrames/${activeNotif.video_path}`} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
+                  
                 ) : (
                   <div className="no-video-error">No Video Evidence Found</div>
                 )}
