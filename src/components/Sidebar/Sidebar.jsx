@@ -94,6 +94,10 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
             <Link to="/AllTeacher" onClick={onClose} className={`nav-item ${path === '/AllTeacher' ? 'active' : ''}`}>
               <span className="nav-icon">📚</span> All Teacher
             </Link>
+
+            <Link to="/DirectorReportsDashboard" onClick={onClose} className={`nav-item ${path === '/DirectorReportsDashboard' ? 'active' : ''}`}>
+              <span className="nav-icon">📚</span> Director Reports Dashboard
+            </Link>
           </>
         )}
 

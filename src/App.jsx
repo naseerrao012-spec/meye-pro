@@ -82,6 +82,7 @@ import ScheduleChanges from './pages/teacher/ScheduleChanges';
 
 
 import AllTeacher from './pages/director/AllTeacher';
+import DirectorReportsDashboard from './pages/director/DirectorReportsDashboard.';
 
 
 // Layout
@@ -121,6 +122,7 @@ function App() {
           <Route path="/Schedule-Changes" element={<ScheduleChanges/>}/>
 
           <Route path="/AllTeacher" element={<AllTeacher/>}/>
+          <Route path="/DirectorReportsDashboard" element={<DirectorReportsDashboard/>}/>
 
 
         </Route>

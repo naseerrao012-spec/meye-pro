@@ -27,7 +27,7 @@ const TeacherReportsDashboard = () => {
     if (!teacherID) return;
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:8000/teacher/TeacherCHRByDate?teacherID=${teacherID}&date=${date}`);
+      const res = await axios.get(`http://localhost:8000/teacher/TeacherCHR?teacherID=${teacherID}&date=${date}`);
       setReports(res.data.CHR_Reports || []);
     } catch (err) {
       console.error("Error fetching reports", err);

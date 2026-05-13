@@ -1,0 +1,270 @@
+:root {
+  --primary: #1a237e;
+  --accent: #00bcd4;
+  --bg: #f4f7fe;
+}
+
+.faculty-dashboard-stage {
+  background-color: var(--bg);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.faculty-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.faculty-title { color: var(--primary); margin: 0; font-weight: 800; }
+
+.faculty-search-wrapper input {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  width: 250px;
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.faculty-card-premium {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.faculty-card-premium:hover { transform: translateY(-5px); }
+
+.card-inner { display: flex; align-items: center; }
+
+.image-holder img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 3px solid #f0f0f0;
+}
+
+.staff-name { margin: 0; font-size: 1.1rem; color: var(--primary); }
+.staff-dept { font-size: 0.85rem; color: #777; margin: 5px 0 10px; }
+
+.view-profile-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* Reports View Styles */
+.reports-full-page { padding: 30px; background: var(--bg); min-height: 100vh; }
+
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-btn-premium {
+  background: none;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.custom-date-input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+.toggle-container { display: flex; gap: 10px; }
+
+.toggle-btn {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+.toggle-btn.active { background: var(--primary); color: white; }
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.report-card-premium {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-accent-line {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: var(--accent);
+  border-radius: 12px 12px 0 0;
+}
+
+.time-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.stat-label { display: block; font-size: 0.7rem; color: #888; }
+.stat-value { font-weight: 700; font-size: 0.9rem; }
+
+.status-pill {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 15px;
+  background: #eee;
+}
+
+.present { background: #d4edda; color: #155724; }
+.absent { background: #f8d7da; color: #721c24; }
+
+/* Existing CSS remains same, add these for Modal */
+
+.card-footer-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.check-media-btn {
+  background:var(--primary);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.check-media-btn:hover {
+  background: #0097a7;
+}
+
+/* Video Modal Styles */
+.video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.video-modal-container {
+  background: white;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.video-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.video-tabs button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.video-tabs button.active {
+  background: #1a237e;
+  color: white;
+  border-color: #1a237e;
+}
+
+.video-viewport {
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-video {
+  width: 100%;
+  max-height: 500px;
+}
+
+.no-video-placeholder {
+  color: white;
+  font-style: italic;
+}
+
+.modal-loader {
+  padding: 40px;
+  text-align: center;
+  font-weight: 600;
+}
