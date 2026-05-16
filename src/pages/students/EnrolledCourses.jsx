@@ -202,7 +202,8 @@ const EnrolledCourses = () => {
 
   return (
     <main className="app-content">
-      <div className="page-title">
+
+      <div className="page-title"/>
         <h1>Enrolled Courses</h1>
         {/* <p>Overview of your registered courses and attendance performance.</p> */}
       <section className="courses-grid-container">
