@@ -204,9 +204,7 @@ const EnrolledCourses = () => {
     <main className="app-content">
       <div className="page-title">
         <h1>Enrolled Courses</h1>
-        <p>Overview of your registered courses and attendance performance.</p>
-      </div>
-
+        {/* <p>Overview of your registered courses and attendance performance.</p> */}
       <section className="courses-grid-container">
         {loading ? (
           <div className="loader-container"><div className="premium-spinner"></div></div>

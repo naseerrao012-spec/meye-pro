@@ -77,7 +77,7 @@ const AllocatedCourses = () => {
             <header className="page-hero">
               <div className="hero-text">
                 <h1>My Allocated Courses</h1>
-                <p>Manage your classes and monitor real-time student attendance.</p>
+                {/* <p>Manage your classes and monitor real-time student attendance.</p> */}
               </div>
               <div className="teacher-id-badge">
                 <span className="label">Teacher ID</span>

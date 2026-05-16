@@ -4,10 +4,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./TeacherReportsDashboard.css";
-
+import { useLocation } from "react-router-dom";
 const TeacherReportsDashboard = () => {
   const today = new Date().toISOString().split('T')[0];
-  
+  const location = useLocation();
   const [reports, setReports] = useState([]);
   const [viewMode, setViewMode] = useState("CHR");
   const [loading, setLoading] = useState(true);
@@ -21,14 +21,29 @@ const TeacherReportsDashboard = () => {
   // 1. Sirf selected CHR ID ko track karne ke liye state
   const [selectedChrId, setSelectedChrId] = useState(null);
 
-  const teacherID = localStorage.getItem("userId");
+  const userID = localStorage.getItem("userId");
+  const { teacherId } = location.state || {};
+  const role=localStorage.getItem("userRole")
 
   const fetchReports = async (date) => {
-    if (!teacherID) return;
+    console.log("Navigation Teaacher Id =",teacherId)
+    console.log("User Id =",userID)
+
+    if (!teacherId&&!userID) return;
     try {
-      setLoading(true);
-      const res = await axios.get(`http://localhost:8000/teacher/TeacherCHR?teacherID=${teacherID}&date=${date}`);
-      setReports(res.data.CHR_Reports || []);
+      if(role.toLowerCase()==='admin'){
+
+        setLoading(true);
+        const res = await axios.get(`http://localhost:8000/teacher/TeacherCHR?teacherID=${teacherId}&date=${date}`);
+        setReports(res.data.CHR_Reports || []);
+      }
+      else{
+        
+        setLoading(true);
+        const res = await axios.get(`http://localhost:8000/teacher/TeacherCHR?teacherID=${userID}&date=${date}`);
+        setReports(res.data.CHR_Reports || []);
+        
+      }
     } catch (err) {
       console.error("Error fetching reports", err);
       setReports([]);
@@ -97,7 +112,7 @@ const TeacherReportsDashboard = () => {
 
   useEffect(() => {
     fetchReports(selectedDate);
-  }, [selectedDate, teacherID]);
+  }, [selectedDate, userID]);
 
   return (
     <div className="reports-full-page">

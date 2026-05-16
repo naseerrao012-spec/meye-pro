@@ -200,7 +200,7 @@ function DirectorReportsDashboard() {
         <div className="faculty-header-section">
           <div className="title-group">
             <h2 className="faculty-title">Director Dashboard</h2>
-            <p className="faculty-subtitle">Select a faculty member to view detailed reports</p>
+            {/* <p className="faculty-subtitle">Select a faculty member to view detailed reports</p> */}
           </div>
 
           <div className="header-right-actions">

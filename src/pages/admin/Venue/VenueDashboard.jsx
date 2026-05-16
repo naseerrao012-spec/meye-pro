@@ -97,7 +97,7 @@ function VenueDashboard() {
       <header className="premium-header">
         <div className="header-content">
           <h1>Live Venue Monitoring</h1>
-          <p>Real-time status of university halls and rooms</p>
+          {/* <p>Real-time status of university halls and rooms</p> */}
         </div>
         <button className="refresh-btn" onClick={fetchData}>🔄 Refresh Live</button>
       </header>
